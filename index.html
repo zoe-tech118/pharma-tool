@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="药品学习">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0F172A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+<title>药品运营知识学习工具 · Top 100</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#F1F5F9;color:#1E293B;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 12px}
+.hdr{background:linear-gradient(135deg,#0F172A,#1E293B 60%,#334155);color:#fff;padding:20px 0 14px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.hdr h1{font-size:20px;font-weight:900;letter-spacing:-.3px}
+.hdr-sub{font-size:12px;color:#94A3B8;margin-top:3px}
+.tabs{display:flex;gap:3px;margin-top:12px;background:rgba(255,255,255,.07);border-radius:8px;padding:3px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s;color:#94A3B8;border:none;background:0 0}
+.tab:hover{color:#fff;background:rgba(255,255,255,.06)}
+.tab.on{background:#fff;color:#0F172A;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.bar{display:flex;gap:6px;flex-wrap:wrap;padding:14px 0;align-items:center}
+.sb{flex:1;min-width:180px;padding:9px 12px 9px 32px;border:2px solid #E2E8F0;border-radius:8px;font-size:13px;background:#fff;outline:0;font-family:inherit}
+.sb:focus{border-color:#3B82F6}
+.cb{padding:6px 12px;border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;border:2px solid #E2E8F0;background:#fff;color:#64748B;transition:all .2s}
+.cb:hover{border-color:#94A3B8}
+.cb.on{border-color:#3B82F6;background:#EFF6FF;color:#1D4ED8}
+.cb.c0.on{border-color:#F97316;background:#FFF7ED;color:#9A3412}
+.cb.c1.on{border-color:#3B82F6;background:#EFF6FF;color:#1E3A8A}
+.cb.c2.on{border-color:#22C55E;background:#F0FDF4;color:#14532D}
+.cb.c3.on{border-color:#EC4899;background:#FDF2F8;color:#831843}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;padding-bottom:24px}
+.card{border-radius:12px;border:2px solid #E2E8F0;background:#fff;overflow:hidden;cursor:pointer;transition:all .2s}
+.card:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.ch{padding:12px 16px;color:#fff}
+.ch .sn{font-size:10px;opacity:.8}
+.ch .nm{font-size:18px;font-weight:800;margin-top:3px}
+.ch .br{font-size:11px;opacity:.85;margin-top:1px}
+.cb2{padding:12px 16px;font-size:12.5px;line-height:1.7}
+.cb2 .fl{margin-bottom:6px}
+.cb2 .fl b{color:#1E293B;font-weight:600;margin-right:4px}
+.cb2 .fl span{color:#475569}
+.bg{display:inline-block;padding:1px 7px;border-radius:14px;font-size:10px;font-weight:600;margin:0 3px 3px 0}
+.bg-g{background:#DCFCE7;color:#166534}
+.bg-y{background:#FEF3C7;color:#92400E}
+.bg-b{background:#EFF6FF;color:#1E40AF}
+.bg-s{background:#F1F5F9;color:#475569}
+.nb{margin-top:6px;padding:7px 9px;border-radius:6px;background:#FFFBEB;border-left:3px solid #F97316;font-size:11px;color:#92400E;line-height:1.5}
+.fh{font-size:11px;color:#94A3B8;text-align:center;padding:4px}
+
+/* Quiz */
+.qw{max-width:680px;margin:20px auto}
+.qc{padding:24px;background:#fff;border-radius:14px;border:2px solid #E2E8F0}
+.qc h2{font-size:18px;font-weight:800;margin-bottom:16px}
+.qog{margin-bottom:16px}
+.qog>label{display:block;font-size:12px;font-weight:600;color:#64748B;margin-bottom:6px}
+.qor{display:flex;gap:5px;flex-wrap:wrap}
+.qo{padding:7px 14px;border-radius:7px;border:2px solid #E2E8F0;font-size:12px;cursor:pointer;background:#fff;transition:all .2s;font-family:inherit;font-weight:500}
+.qo:hover{border-color:#3B82F6}
+.qo.on{border-color:#3B82F6;background:#EFF6FF;color:#1D4ED8;font-weight:600}
+.bp{display:inline-block;padding:11px 28px;border-radius:8px;background:linear-gradient(135deg,#3B82F6,#2563EB);color:#fff;border:0;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(59,130,246,.3)}
+.bp:hover{box-shadow:0 6px 20px rgba(59,130,246,.4)}
+.bs{padding:9px 20px;border-radius:7px;background:#F1F5F9;color:#1E293B;border:2px solid #E2E8F0;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.pb{height:5px;background:#E2E8F0;border-radius:3px;margin-bottom:16px;overflow:hidden}
+.pbf{height:100%;background:linear-gradient(90deg,#3B82F6,#22C55E);transition:width .3s;border-radius:3px}
+.qq{font-size:15px;font-weight:700;margin-bottom:14px;line-height:1.6}
+.qopt{padding:11px 14px;border-radius:8px;border:2px solid #E2E8F0;margin-bottom:6px;cursor:pointer;font-size:13px;transition:all .15s;background:#fff}
+.qopt:hover{border-color:#3B82F6;background:#F8FAFF}
+.qopt.sel{border-color:#3B82F6;background:#EFF6FF}
+.qopt.ok{border-color:#22C55E;background:#DCFCE7;color:#166534;font-weight:600}
+.qopt.no{border-color:#EF4444;background:#FEE2E2;color:#991B1B}
+.qopt.rv{border-color:#22C55E;background:#F0FDF4}
+.qex{margin-top:12px;padding:10px;background:#F8FAFC;border-radius:7px;font-size:12px;line-height:1.6;border-left:3px solid #3B82F6}
+.sn2{font-size:56px;font-weight:900;background:linear-gradient(135deg,#3B82F6,#22C55E);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.abtn{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+
+/* Pathway */
+.ps{margin-bottom:20px}
+.ps h3{font-size:14px;font-weight:700;padding:9px 14px;border-radius:8px 8px 0 0;color:#fff}
+.pt{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:0 0 8px 8px;overflow:hidden;border:2px solid #E2E8F0;border-top:0}
+.pt th{background:#F8FAFC;padding:8px 10px;text-align:left;font-weight:600;color:#64748B;font-size:11px;border-bottom:2px solid #E2E8F0}
+.pt td{padding:8px 10px;border-bottom:1px solid #F1F5F9;line-height:1.5;vertical-align:top}
+.pt tr:hover td{background:#F8FAFC}
+
+/* Calendar */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;padding-bottom:24px}
+.cc{border-radius:12px;border:2px solid #E2E8F0;background:#fff;overflow:hidden}
+.cch{padding:12px 16px;font-weight:700;font-size:14px;color:#fff}
+.ccb{padding:12px 16px;font-size:12px;line-height:1.7}
+.ccb .cf{margin-bottom:4px}
+.ccb .cl{font-weight:600;color:#1E293B}
+
+/* Stats */
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.sx{text-align:center;padding:14px;background:#fff;border-radius:12px;border:2px solid #E2E8F0}
+.sx .sv{font-size:26px;font-weight:900}
+.sx .sl{font-size:11px;color:#64748B;margin-top:2px}
+.em{text-align:center;padding:48px 16px;color:#64748B}
+.em .ei{font-size:40px;margin-bottom:8px}
+
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* Progress */
+.prog-wrap{padding-bottom:24px}
+.prog-card{background:#fff;border-radius:12px;border:2px solid #E2E8F0;padding:18px;margin-bottom:14px}
+.prog-card h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.prog-bar-outer{height:20px;background:#E2E8F0;border-radius:10px;overflow:hidden;position:relative;margin-bottom:6px}
+.prog-bar-inner{height:100%;border-radius:10px;transition:width .5s}
+.prog-bar-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:700;color:#1E293B}
+.prog-cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:12px}
+.prog-cat-item{padding:12px;background:#F8FAFC;border-radius:8px;border:1px solid #E2E8F0}
+.prog-cat-item .pci-name{font-size:13px;font-weight:600;margin-bottom:6px}
+.prog-cat-item .pci-bar{height:8px;background:#E2E8F0;border-radius:4px;overflow:hidden}
+.prog-cat-item .pci-fill{height:100%;border-radius:4px}
+.prog-cat-item .pci-text{font-size:11px;color:#64748B;margin-top:4px}
+.hist-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9;font-size:12px}
+.hist-item:last-child{border-bottom:0}
+.streak-num{font-size:36px;font-weight:900;color:#F97316}
+.master-btn{padding:4px 10px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;border:1.5px solid #E2E8F0;background:#fff;color:#64748B;transition:all .15s;position:absolute;top:8px;right:8px;z-index:2}
+.master-btn:hover{border-color:#22C55E}
+.master-btn.on{border-color:#22C55E;background:#DCFCE7;color:#166534}
+.card{position:relative}
+.fc-master{display:flex;justify-content:center;gap:8px;margin-top:10px}
+.reset-btn{padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:2px solid #FCA5A5;background:#FEF2F2;color:#991B1B;font-family:inherit}
+.reset-btn:hover{background:#FEE2E2}
+.filter-master{display:flex;gap:6px;margin-left:auto}
+.fm-btn{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:1.5px solid #E2E8F0;background:#fff;color:#64748B;font-family:inherit;transition:all .15s}
+.fm-btn.on{border-color:#3B82F6;background:#EFF6FF;color:#1D4ED8;font-weight:600}
+
+@media(max-width:640px){
+  .grid,.cgrid{grid-template-columns:1fr}
+  .tabs{gap:1px}.tab{padding:6px 10px;font-size:11px}
+  .hdr{padding:14px 0 10px}
+  .hdr h1{font-size:17px}
+  .hdr-sub{font-size:10px;line-height:1.5}
+  .bar{gap:4px;padding:10px 0}
+  .sb{min-width:100%;padding:8px 10px 8px 28px;font-size:13px}
+  .cb{padding:5px 9px;font-size:10px}
+  .ch .nm{font-size:16px}
+  .ch .sn,.ch .br{font-size:10px}
+  .cb2{padding:10px 14px;font-size:12px}
+  .master-btn{font-size:9px;padding:3px 7px;top:6px;right:6px}
+  .pt{font-size:11px}
+  .pt th,.pt td{padding:6px 7px}
+  .qc{padding:16px}
+  .qq{font-size:14px}
+  .qopt{padding:9px 12px;font-size:12px}
+  .qo{padding:6px 10px;font-size:11px}
+  .sg{grid-template-columns:repeat(3,1fr);gap:6px}
+  .sx{padding:10px}
+  .sx .sv{font-size:20px}
+  .sx .sl{font-size:9px}
+  .prog-cat-grid{grid-template-columns:1fr 1fr}
+  .filter-master{margin-left:0;margin-top:4px;width:100%}
+  .fm-btn{flex:1;text-align:center}
+  .nb{font-size:11px}
+  .tbl-wrap{margin:0 -12px;padding:0 12px}
+}
+@media(max-width:380px){
+  .sg{grid-template-columns:repeat(2,1fr)}
+  .tabs{padding:2px}
+  .tab{padding:5px 7px;font-size:10px}
+}
+/* PWA-like touch feel */
+@media(hover:none){
+  .card:active{transform:scale(0.98);transition:transform .1s}
+  .qopt:active{transform:scale(0.98)}
+  .tab:active{opacity:.7}
+  .cb:active,.qo:active,.fm-btn:active,.bs:active{opacity:.7}
+}
+/* Safe area for notch phones */
+@supports(padding-top:env(safe-area-inset-top)){
+  .hdr{padding-top:calc(14px + env(safe-area-inset-top))}
+  body{padding-bottom:env(safe-area-inset-bottom)}
+}
+</style>
+</head>
+<body>
+<div class="hdr">
+<div class="wrap">
+<h1>💊 药品运营知识学习工具</h1>
+<div class="hdr-sub" id="hdr-sub">Top 100 药品 · 消化/呼吸/代谢内分泌/心血管 4大领域 · 学习+记忆+测验</div>
+<div class="tabs" id="tabs"></div>
+</div>
+</div>
+<div class="wrap"><div id="app"></div></div>
+
+<script>
+const D=[{"id": 1, "cat": "消化", "sub": "质子泵抑制剂(PPI)", "name": "奥美拉唑", "brand": "洛赛克(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "常州四药/海正药业", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3元/粒", "price_gen": "≈0.1-0.3元/粒", "margin": "仿制毛利中等", "moa": "抑制H+/K+-ATP酶，阻断胃酸分泌最后环节", "indication": "胃溃疡/反流性食管炎/HP根除", "patient": "30-60岁,男性偏多,饮食不规律", "combo": "阿莫西林+克拉霉素(三联)/加铋剂(四联)", "bundle": "铝碳酸镁/益生菌/康复新液", "season": "秋冬偏高", "region": "无明显差异", "note": "集采品种,价格极低,走量大;OTC双跨品种"}, {"id": 2, "cat": "消化", "sub": "PPI", "name": "兰索拉唑", "brand": "达克普隆(Takeda)", "mfr": "武田制药", "generic_mfr": "扬子江/正大天晴", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈4元/粒", "price_gen": "≈0.2-0.5元/粒", "margin": "仿制毛利中等", "moa": "同奥美拉唑,PPI类", "indication": "胃溃疡/十二指肠溃疡/反流性食管炎", "patient": "同奥美拉唑", "combo": "同奥美拉唑", "bundle": "同奥美拉唑", "season": "秋冬偏高", "region": "无明显差异", "note": "武田原研品牌认知度高"}, {"id": 3, "cat": "消化", "sub": "PPI", "name": "雷贝拉唑", "brand": "波利特(Eisai/J&J)", "mfr": "卫材/强生", "generic_mfr": "济川药业/海正药业", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5元/粒", "price_gen": "≈0.3-0.8元/粒", "margin": "仿制毛利中等", "moa": "PPI,起效最快,受CYP2C19影响最小", "indication": "同上+Hp根除", "patient": "胃病患者,需快速抑酸者", "combo": "同PPI类", "bundle": "铝碳酸镁/益生菌", "season": "秋冬偏高", "region": "无明显差异", "note": "起效快是卖点差异化"}, {"id": 4, "cat": "消化", "sub": "PPI", "name": "泮托拉唑", "brand": "泰美尼克(Altana/Nycomed)", "mfr": "奈科明(现武田)", "generic_mfr": "扬子江/丽珠集团", "type": "原研+仿制", "vbp": "已集采(注射剂)", "price_orig": "≈4元/粒", "price_gen": "≈0.2-0.5元/粒", "margin": "毛利低", "moa": "PPI类", "indication": "同上", "patient": "住院+门诊患者", "combo": "同PPI类", "bundle": "同上", "season": "秋冬偏高", "region": "无明显差异", "note": "注射剂院内为主,口服零售可售"}, {"id": 5, "cat": "消化", "sub": "PPI", "name": "艾司奥美拉唑", "brand": "耐信(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "正大天晴/海正", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5-7元/粒", "price_gen": "≈0.5-1元/粒", "margin": "仿制毛利中等", "moa": "奥美拉唑S-异构体,生物利用度更高", "indication": "同PPI类+NERD", "patient": "有品牌偏好的中高收入患者", "combo": "同PPI类", "bundle": "同上", "season": "秋冬偏高", "region": "无明显差异", "note": "原研耐信仍有品牌溢价"}, {"id": 6, "cat": "消化", "sub": "H2受体拮抗剂", "name": "法莫替丁", "brand": "信法丁(Merck)", "mfr": "默沙东", "generic_mfr": "多家国产", "type": "原研+仿制", "vbp": "部分集采", "price_orig": "≈1-2元/片", "price_gen": "≈0.1-0.3元/片", "margin": "毛利低", "moa": "阻断组胺H2受体,减少胃酸分泌", "indication": "轻中度消化性溃疡/反酸", "patient": "轻症患者,PPI不耐受者", "combo": "可与抗酸药联用", "bundle": "铝碳酸镁", "season": "秋冬偏高", "region": "无明显差异", "note": "OTC品种,适合轻症自我药疗"}, {"id": 7, "cat": "消化", "sub": "抗酸药", "name": "铝碳酸镁", "brand": "达喜(Bayer)", "mfr": "拜耳", "generic_mfr": "仅原研为主", "type": "原研为主", "vbp": "未集采", "price_orig": "≈1.5-2元/片", "price_gen": "N/A", "margin": "毛利较高", "moa": "中和胃酸+吸附胆汁酸,保护胃黏膜", "indication": "胃酸过多/胆汁反流/急性胃痛", "patient": "各年龄段,胃部不适即购型", "combo": "PPI/胃黏膜保护剂", "bundle": "益生菌/健胃消食片", "season": "全年(秋冬偏高)", "region": "无明显差异", "note": "OTC明星品种,品牌认知度极高,毛利好"}, {"id": 8, "cat": "消化", "sub": "胃黏膜保护剂", "name": "瑞巴派特", "brand": "膜固思达(Otsuka)", "mfr": "大塚制药", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-4元/片", "price_gen": "≈0.3-0.8元/片", "margin": "仿制毛利中等", "moa": "促进胃黏膜前列腺素合成,修复黏膜", "indication": "胃溃疡/慢性胃炎", "patient": "慢性胃病长期用药者", "combo": "PPI/铝碳酸镁", "bundle": "康复新液", "season": "全年", "region": "无明显差异", "note": "处方药,需引导复购"}, {"id": 9, "cat": "消化", "sub": "胃黏膜保护剂", "name": "替普瑞酮", "brand": "施维舒(Eisai)", "mfr": "卫材", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈3-5元/粒", "price_gen": "≈1-2元/粒", "margin": "原研毛利中高", "moa": "促进胃黏膜糖蛋白合成", "indication": "慢性胃炎/胃溃疡", "patient": "中老年慢性胃病", "combo": "PPI", "bundle": "益生菌", "season": "全年", "region": "无明显差异", "note": "原研品牌溢价明显"}, {"id": 10, "cat": "消化", "sub": "促胃动力药", "name": "多潘立酮", "brand": "吗丁啉(J&J/Janssen)", "mfr": "强生/杨森", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈1-1.5元/片", "price_gen": "≈0.3-0.5元/片", "margin": "原研毛利较高", "moa": "阻断外周多巴胺D2受体,促胃排空", "indication": "功能性消化不良/腹胀/恶心", "patient": "20-50岁,饮食不节者", "combo": "PPI/消化酶", "bundle": "健胃消食片/益生菌", "season": "全年(节后高峰)", "region": "无明显差异", "note": "OTC经典品种,吗丁啉品牌力极强"}, {"id": 11, "cat": "消化", "sub": "促胃动力药", "name": "莫沙必利", "brand": "加斯清(Dainippon)", "mfr": "大日本住友", "generic_mfr": "鲁南贝特/豪森", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.3-0.5元/片", "margin": "仿制毛利中等", "moa": "5-HT4受体激动剂,促进全消化道蠕动", "indication": "功能性消化不良/胃食管反流", "patient": "同多潘立酮", "combo": "PPI", "bundle": "同上", "season": "全年", "region": "无明显差异", "note": "处方药,与多潘立酮形成替代关系"}, {"id": 12, "cat": "消化", "sub": "促胃动力药", "name": "伊托必利", "brand": "瑞复啉(Abbott)", "mfr": "雅培", "generic_mfr": "国产少数", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈3-4元/片", "price_gen": "≈1-2元/片", "margin": "原研毛利中高", "moa": "D2受体拮抗+乙酰胆碱酯酶抑制,双重促动力", "indication": "功能性消化不良", "patient": "消化不良反复发作者", "combo": "PPI/消化酶", "bundle": "益生菌", "season": "全年", "region": "无明显差异", "note": "差异化卖点:双重机制"}, {"id": 13, "cat": "消化", "sub": "止泻药", "name": "蒙脱石散", "brand": "思密达(Ipsen)", "mfr": "益普生", "generic_mfr": "海南先声/多家", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈3-5元/袋", "price_gen": "≈1-2元/袋", "margin": "毛利较高", "moa": "物理吸附病原体和毒素,覆盖消化道黏膜", "indication": "急慢性腹泻/食管炎", "patient": "全年龄含儿童,急性腹泻", "combo": "补液盐/益生菌", "bundle": "诺氟沙星/黄连素", "season": "夏季高峰", "region": "南方偏高", "note": "OTC家庭常备药,儿童用量大"}, {"id": 14, "cat": "消化", "sub": "益生菌", "name": "双歧杆菌三联活菌", "brand": "培菲康(上海信谊)", "mfr": "上海信谊", "generic_mfr": "仅原研", "type": "原研(独家)", "vbp": "未集采", "price_orig": "≈2-3元/粒", "price_gen": "N/A", "margin": "毛利较高", "moa": "补充肠道有益菌群,调节微生态平衡", "indication": "腹泻/便秘/肠道菌群失调/抗生素相关性腹泻", "patient": "全年龄,抗生素使用者/肠道功能紊乱", "combo": "抗生素/PPI(间隔2h服用)", "bundle": "蒙脱石散/乳果糖", "season": "夏季偏高", "region": "无明显差异", "note": "独家品种,患者认知度高"}, {"id": 15, "cat": "消化", "sub": "益生菌", "name": "布拉氏酵母菌散", "brand": "亿活(Biocodex)", "mfr": "百科达", "generic_mfr": "仅原研", "type": "原研(独家)", "vbp": "未集采", "price_orig": "≈5-7元/袋", "price_gen": "N/A", "margin": "毛利高", "moa": "真菌类益生菌,耐抗生素,抑制致病菌", "indication": "抗生素相关性腹泻/急性感染性腹泻", "patient": "儿童+成人腹泻,尤其抗生素使用期间", "combo": "抗生素(可同服)", "bundle": "蒙脱石散/补液盐", "season": "夏季偏高", "region": "无明显差异", "note": "可与抗生素同服是独特卖点"}, {"id": 16, "cat": "消化", "sub": "泻药", "name": "乳果糖", "brand": "杜密克(Abbott)", "mfr": "雅培(现Viatris)", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈1-1.5元/ml(口服液)", "price_gen": "≈0.5-0.8元/ml", "margin": "毛利中等", "moa": "渗透性泻药,不被吸收,保留水分软化粪便", "indication": "功能性便秘/肝性脑病", "patient": "老年人/孕妇/儿童便秘", "combo": "益生菌", "bundle": "膳食纤维补充剂", "season": "全年(冬季偏高)", "region": "无明显差异", "note": "安全性高,孕妇可用是卖点"}, {"id": 17, "cat": "消化", "sub": "抗生素(HP根除)", "name": "阿莫西林", "brand": "阿莫仙等", "mfr": "多家(GSK等)", "generic_mfr": "联邦制药/石药/鲁抗", "type": "仿制为主", "vbp": "已集采", "price_orig": "≈1-2元/粒", "price_gen": "≈0.1-0.3元/粒", "margin": "毛利极低", "moa": "β-内酰胺类,抑制细菌细胞壁合成", "indication": "HP根除方案核心用药/上呼吸道感染", "patient": "HP阳性患者", "combo": "PPI+克拉霉素或甲硝唑+铋剂", "bundle": "铋剂/PPI", "season": "全年", "region": "无明显差异", "note": "集采品种,价格极低,走量"}, {"id": 18, "cat": "消化", "sub": "抗生素(HP根除)", "name": "克拉霉素", "brand": "克拉仙(Abbott)", "mfr": "雅培", "generic_mfr": "石药/扬子江", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5-8元/片", "price_gen": "≈0.5-1元/片", "margin": "仿制毛利低", "moa": "大环内酯类,抑制细菌蛋白质合成", "indication": "HP根除/呼吸道感染", "patient": "HP阳性患者", "combo": "PPI+阿莫西林+铋剂", "bundle": "同上", "season": "全年", "region": "无明显差异", "note": "HP根除方案核心药之一"}, {"id": 19, "cat": "消化", "sub": "铋剂", "name": "枸橼酸铋钾", "brand": "丽珠得乐(丽珠)", "mfr": "丽珠集团", "generic_mfr": "仅国产", "type": "国产原创", "vbp": "未集采", "price_orig": "≈1-2元/粒", "price_gen": "N/A", "margin": "毛利中等", "moa": "铋盐沉积于溃疡面形成保护层,杀灭HP", "indication": "HP根除四联方案/胃溃疡", "patient": "HP感染需根除者", "combo": "PPI+2种抗生素", "bundle": "同上", "season": "全年", "region": "无明显差异", "note": "四联方案必备,丽珠得乐品牌认知度高"}, {"id": 20, "cat": "消化", "sub": "保肝药", "name": "水飞蓟宾", "brand": "利加隆(Madaus)", "mfr": "马博士(现MEDA/Viatris)", "generic_mfr": "天士力/国产多家", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈2-3元/粒", "price_gen": "≈0.5-1元/粒", "margin": "毛利中等", "moa": "抗氧化,稳定肝细胞膜,促进肝细胞再生", "indication": "酒精性/药物性肝损伤/脂肪肝", "patient": "饮酒人群/长期用药者/脂肪肝", "combo": "与保肝类联用", "bundle": "护肝片(中成药)", "season": "全年(节后高)", "region": "无明显差异", "note": "脂肪肝人群增长带动需求"}, {"id": 21, "cat": "消化", "sub": "利胆药", "name": "熊去氧胆酸", "brand": "优思弗(Falk)", "mfr": "德国Falk", "generic_mfr": "正大天晴/国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5-8元/粒", "price_gen": "≈1-2元/粒", "margin": "仿制毛利中等", "moa": "溶解胆固醇结石,保护肝细胞", "indication": "胆结石/原发性胆汁性肝硬化/脂肪肝", "patient": "胆结石/胆囊术后/PBC患者", "combo": "保肝药", "bundle": "水飞蓟宾", "season": "全年", "region": "无明显差异", "note": "集采品种,长期用药,复购率高"}, {"id": 22, "cat": "消化", "sub": "中成药-健胃消食", "name": "健胃消食片", "brand": "江中牌", "mfr": "江中药业", "generic_mfr": "仅原研", "type": "独家品种", "vbp": "N/A", "price_orig": "≈0.3-0.5元/片", "price_gen": "N/A", "margin": "毛利高", "moa": "太子参+山药+陈皮等健脾消食", "indication": "消化不良/食欲不振", "patient": "全年龄尤其儿童和老年", "combo": "单独使用为主", "bundle": "多潘立酮/益生菌", "season": "全年(节后高)", "region": "无明显差异", "note": "OTC明星,广告投入大,品牌力极强"}, {"id": 23, "cat": "消化", "sub": "中成药-祛暑", "name": "藿香正气口服液", "brand": "太极牌", "mfr": "太极集团", "generic_mfr": "多家", "type": "多家生产", "vbp": "N/A", "price_orig": "≈2-3元/支", "price_gen": "N/A", "margin": "毛利较高", "moa": "芳香化湿,理气和中", "indication": "中暑/胃肠型感冒/水土不服", "patient": "夏季户外工作者/旅行者", "combo": "单独使用", "bundle": "十滴水/仁丹", "season": "夏季极高峰", "region": "南方/高温地区", "note": "夏季爆款,季节性极强,需提前备货"}, {"id": 24, "cat": "消化", "sub": "中成药-肠道", "name": "肠炎宁片", "brand": "康恩贝", "mfr": "江西康恩贝", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈0.5-1元/片", "price_gen": "N/A", "margin": "毛利高", "moa": "清热利湿,行气止痛", "indication": "急慢性肠炎/腹泻/痢疾", "patient": "肠胃不适人群", "combo": "蒙脱石散/益生菌", "bundle": "补液盐", "season": "夏秋偏高", "region": "无明显差异", "note": "独家品种,10亿级大单品"}, {"id": 25, "cat": "消化", "sub": "中成药-胃药", "name": "三九胃泰颗粒", "brand": "999牌", "mfr": "华润三九", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈3-5元/袋", "price_gen": "N/A", "margin": "毛利较高", "moa": "清热燥湿,行气活血,消炎止痛", "indication": "浅表性胃炎/糜烂性胃炎", "patient": "慢性胃病中年人群", "combo": "PPI/铝碳酸镁", "bundle": "康复新液", "season": "秋冬偏高", "region": "无明显差异", "note": "品牌力强,华润三九核心品种"}, {"id": 26, "cat": "消化", "sub": "消化酶制剂", "name": "复方消化酶", "brand": "达吉(Kyowa Kirin)", "mfr": "协和麒麟", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈1.5-2元/片", "price_gen": "≈0.5-1元/片", "margin": "原研毛利中高", "moa": "补充多种消化酶,促进营养物质消化吸收", "indication": "消化不良/食欲缺乏/腹胀", "patient": "老年消化功能减退者/术后患者", "combo": "促动力药", "bundle": "益生菌/健胃消食片", "season": "全年", "region": "无明显差异", "note": "处方药,老年患者依从性高"}, {"id": 27, "cat": "消化", "sub": "消化酶制剂", "name": "米曲菌胰酶片", "brand": "慷彼申(Nordmark)", "mfr": "诺尔马克", "generic_mfr": "仅原研", "type": "原研", "vbp": "未集采", "price_orig": "≈2-3元/片", "price_gen": "N/A", "margin": "毛利中高", "moa": "米曲菌酶+胰酶,双重消化功能", "indication": "消化不良/慢性胰腺炎", "patient": "中老年消化功能差者", "combo": "促动力药", "bundle": "益生菌", "season": "全年", "region": "无明显差异", "note": "独家进口品种"}, {"id": 28, "cat": "呼吸", "sub": "解热镇痛", "name": "对乙酰氨基酚", "brand": "泰诺林(J&J)", "mfr": "强生", "generic_mfr": "众多国产", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈1-2元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "抑制中枢前列腺素合成,解热镇痛", "indication": "发热/头痛/感冒", "patient": "全年龄含儿童(混悬液)", "combo": "复方感冒药成分之一", "bundle": "感冒药/退热贴", "season": "秋冬高峰", "region": "北方偏高", "note": "基础OTC,儿童退烧首选"}, {"id": 29, "cat": "呼吸", "sub": "解热镇痛", "name": "布洛芬", "brand": "芬必得/美林(Reckitt/Pfizer)", "mfr": "利洁时/辉瑞", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采(部分)", "price_orig": "≈1-2元/粒", "price_gen": "≈0.1-0.5元/粒", "margin": "仿制毛利低", "moa": "非选择性COX抑制剂,解热镇痛抗炎", "indication": "发热/疼痛/痛经/关节炎", "patient": "全年龄,儿童悬液需求大", "combo": "可与对乙酰氨基酚交替用", "bundle": "退热贴/电解质", "season": "秋冬高峰", "region": "北方偏高", "note": "OTC超级大品种,品牌多"}, {"id": 30, "cat": "呼吸", "sub": "复方感冒药", "name": "复方氨酚烷胺", "brand": "快克/感康", "mfr": "多家", "generic_mfr": "国产", "type": "仿制", "vbp": "未集采", "price_orig": "≈1-2元/片", "price_gen": "N/A", "margin": "毛利中等", "moa": "对乙酰氨基酚+金刚烷胺+扑尔敏等", "indication": "普通感冒", "patient": "18-60岁成人感冒", "combo": "单独使用", "bundle": "止咳药/咽喉含片", "season": "秋冬高峰", "region": "北方偏高", "note": "OTC感冒药第一梯队"}, {"id": 31, "cat": "呼吸", "sub": "复方感冒药", "name": "酚麻美敏", "brand": "泰诺(J&J)", "mfr": "强生", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈3-5元/片", "price_gen": "≈1-2元/片", "margin": "原研毛利较高", "moa": "解热+减充血+止咳+抗过敏四效合一", "indication": "感冒多症状", "patient": "成人多症状感冒", "combo": "单独使用", "bundle": "维C/润喉糖", "season": "秋冬高峰", "region": "无明显差异", "note": "品牌力强,泰诺系列"}, {"id": 32, "cat": "呼吸", "sub": "中成药-感冒", "name": "感冒灵颗粒", "brand": "999牌", "mfr": "华润三九", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈2-3元/袋", "price_gen": "N/A", "margin": "毛利高", "moa": "三叉苦+岗梅+野菊花等清热解表", "indication": "风热感冒/流行性感冒", "patient": "成人感冒患者", "combo": "单独或+西药退烧", "bundle": "板蓝根/抗病毒口服液", "season": "秋冬高峰", "region": "南方偏好", "note": "华润三九超级大品种,年销27亿+"}, {"id": 33, "cat": "呼吸", "sub": "中成药-感冒", "name": "连花清瘟胶囊", "brand": "以岭牌", "mfr": "以岭药业", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈1-1.5元/粒", "price_gen": "N/A", "margin": "毛利较高", "moa": "连翘+金银花+麻黄等清瘟解毒", "indication": "流感/新冠辅助", "patient": "流感季节全年龄", "combo": "可联合退烧药", "bundle": "板蓝根/维C", "season": "秋冬+流感季", "region": "无明显差异", "note": "疫情后品牌力大增,但需关注下滑趋势"}, {"id": 34, "cat": "呼吸", "sub": "中成药-清热", "name": "蒲地蓝消炎口服液", "brand": "济川牌", "mfr": "济川药业", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈3-5元/支", "price_gen": "N/A", "margin": "毛利高", "moa": "蒲公英+板蓝根+苍耳子等清热解毒", "indication": "上呼吸道感染/咽炎/扁桃体炎", "patient": "儿童+成人咽喉肿痛", "combo": "抗生素(必要时)", "bundle": "西瓜霜/咽喉含片", "season": "秋冬+春季", "region": "无明显差异", "note": "儿科用药大品种"}, {"id": 35, "cat": "呼吸", "sub": "祛痰药", "name": "氨溴索", "brand": "沐舒坦(Boehringer)", "mfr": "勃林格殷格翰", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采(口服)", "price_orig": "≈2-3元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利低", "moa": "促进黏液溶解和排出,增加肺表面活性物质", "indication": "急慢性支气管炎/COPD痰多", "patient": "咳嗽痰多患者", "combo": "止咳药/抗生素", "bundle": "雾化装置(雾化液)", "season": "秋冬高峰", "region": "北方偏高", "note": "沐舒坦品牌力强,口服液儿童需求大"}, {"id": 36, "cat": "呼吸", "sub": "祛痰药", "name": "乙酰半胱氨酸", "brand": "富露施(Zambon)", "mfr": "赞邦", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈3-5元/片(泡腾)", "price_gen": "≈1-2元/片", "margin": "原研毛利较高", "moa": "断裂黏蛋白分子间二硫键,降低痰液黏度", "indication": "支气管炎/肺炎/COPD痰液黏稠", "patient": "痰多黏稠难咳出者", "combo": "抗生素/支气管扩张剂", "bundle": "雾化装置", "season": "秋冬高峰", "region": "北方偏高", "note": "泡腾片剂型方便,有差异化"}, {"id": 37, "cat": "呼吸", "sub": "止咳药", "name": "右美沙芬", "brand": "N/A(多为复方)", "mfr": "多家", "generic_mfr": "国产为主", "type": "仿制", "vbp": "未集采", "price_orig": "≈0.5-1元/片", "price_gen": "N/A", "margin": "毛利中等", "moa": "中枢性镇咳,抑制延髓咳嗽中枢", "indication": "干咳/刺激性咳嗽(非痰多型)", "patient": "干咳明显者", "combo": "祛痰药(痰多时不宜单用)", "bundle": "润喉糖", "season": "秋冬高峰", "region": "无明显差异", "note": "OTC,注意不宜与祛痰药滥配"}, {"id": 38, "cat": "呼吸", "sub": "止咳药(中成药)", "name": "川贝枇杷膏", "brand": "京都念慈菴", "mfr": "京都念慈菴", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈15-25元/瓶", "price_gen": "N/A", "margin": "毛利高", "moa": "川贝母+枇杷叶+蜂蜜润肺止咳", "indication": "咳嗽/咽干/咽痛", "patient": "全年龄,咳嗽咽痒者", "combo": "可配合西药止咳", "bundle": "西瓜霜/胖大海", "season": "秋冬高峰", "region": "无明显差异", "note": "OTC经典品牌,口感好,依从性高"}, {"id": 39, "cat": "呼吸", "sub": "止咳药(中成药)", "name": "强力枇杷露", "brand": "太极/多家", "mfr": "太极等", "generic_mfr": "多家生产", "type": "国产", "vbp": "N/A", "price_orig": "≈8-15元/瓶", "price_gen": "N/A", "margin": "毛利中高", "moa": "枇杷叶+罂粟壳等止咳", "indication": "剧烈咳嗽/支气管炎", "patient": "成人剧烈咳嗽", "combo": "祛痰药", "bundle": "润喉含片", "season": "秋冬高峰", "region": "无明显差异", "note": "含罂粟壳,需注意用药安全提示"}, {"id": 40, "cat": "呼吸", "sub": "抗组胺药", "name": "氯雷他定", "brand": "开瑞坦(Bayer)", "mfr": "拜耳(原先灵葆雅)", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.3-0.5元/片", "margin": "仿制毛利中等", "moa": "选择性H1受体拮抗剂,不易透过血脑屏障", "indication": "过敏性鼻炎/荨麻疹/皮肤过敏", "patient": "过敏体质,春秋季高发人群", "combo": "鼻用激素/孟鲁司特", "bundle": "鼻喷剂/眼药水", "season": "春秋花粉季", "region": "北方/干燥地区偏高", "note": "OTC大品种,开瑞坦品牌力强"}, {"id": 41, "cat": "呼吸", "sub": "抗组胺药", "name": "西替利嗪", "brand": "仙特明(UCB)", "mfr": "比利时UCB", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利中等", "moa": "H1受体拮抗剂,二代抗组胺", "indication": "同氯雷他定", "patient": "同氯雷他定,滴剂适合儿童", "combo": "同氯雷他定", "bundle": "同上", "season": "春秋花粉季", "region": "同上", "note": "OTC,有儿童滴剂剂型"}, {"id": 42, "cat": "呼吸", "sub": "抗组胺药", "name": "依巴斯汀", "brand": "苏迪(Almirall)", "mfr": "西班牙Almirall", "generic_mfr": "国产少数", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈3-5元/片", "price_gen": "≈1-2元/片", "margin": "毛利中等", "moa": "高选择性H1受体拮抗剂", "indication": "过敏性鼻炎/慢性荨麻疹", "patient": "慢性过敏患者", "combo": "鼻用激素", "bundle": "皮肤护理品", "season": "春秋花粉季", "region": "北方偏高", "note": "处方药,慢性荨麻疹用量大"}, {"id": 43, "cat": "呼吸", "sub": "鼻用激素", "name": "糠酸莫米松鼻喷", "brand": "内舒拿(MSD)", "mfr": "默沙东", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈60-80元/瓶", "price_gen": "≈30-50元/瓶", "margin": "原研毛利高", "moa": "局部抗炎,抑制鼻黏膜炎症反应", "indication": "过敏性鼻炎/鼻窦炎/鼻息肉", "patient": "过敏性鼻炎长期管理者", "combo": "口服抗组胺药", "bundle": "生理盐水鼻喷/洗鼻器", "season": "春秋高峰", "region": "北方/干燥地区", "note": "处方药,内舒拿品牌力强,复购率高"}, {"id": 44, "cat": "呼吸", "sub": "白三烯受体拮抗剂", "name": "孟鲁司特", "brand": "顺尔宁(MSD)", "mfr": "默沙东", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈8-10元/片", "price_gen": "≈0.3-0.8元/片", "margin": "仿制毛利中等", "moa": "阻断白三烯受体,减轻气道炎症和支气管痉挛", "indication": "哮喘/过敏性鼻炎(尤其儿童)", "patient": "儿童哮喘+过敏性鼻炎", "combo": "ICS/抗组胺药", "bundle": "雾化面罩", "season": "春秋+冬季", "region": "北方偏高", "note": "儿童哮喘+鼻炎双适应症,集采后价格大降"}, {"id": 45, "cat": "呼吸", "sub": "ICS+LABA", "name": "布地奈德/福莫特罗", "brand": "信必可(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈8-15元/吸", "price_gen": "≈3-5元/吸", "margin": "原研毛利高", "moa": "吸入糖皮质激素+长效β2受体激动剂", "indication": "哮喘/COPD维持治疗", "patient": "哮喘/COPD长期管理患者", "combo": "SABA(急救)/LAMA", "bundle": "峰流速仪/储雾罐", "season": "秋冬高峰", "region": "北方/寒冷地区", "note": "吸入剂装置壁垒高,原研份额大"}, {"id": 46, "cat": "呼吸", "sub": "ICS+LABA", "name": "沙美特罗/氟替卡松", "brand": "舒利迭(GSK)", "mfr": "葛兰素史克", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "部分集采", "price_orig": "≈6-12元/吸", "price_gen": "≈2-4元/吸", "margin": "原研毛利高", "moa": "同上机制", "indication": "哮喘/COPD维持", "patient": "同上", "combo": "同上", "bundle": "同上", "season": "秋冬高峰", "region": "北方偏高", "note": "GSK经典品种,干粉吸入器"}, {"id": 47, "cat": "呼吸", "sub": "SABA", "name": "沙丁胺醇气雾剂", "brand": "万托林(GSK)", "mfr": "葛兰素史克", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈20-30元/支", "price_gen": "≈10-15元/支", "margin": "毛利中等", "moa": "短效β2受体激动剂,快速舒张支气管", "indication": "哮喘急性发作/COPD急性加重", "patient": "哮喘患者急救用", "combo": "ICS+LABA(长期控制)", "bundle": "峰流速仪", "season": "秋冬高峰", "region": "北方偏高", "note": "急救药,万托林品牌不可替代性强"}, {"id": 48, "cat": "呼吸", "sub": "ICS", "name": "布地奈德雾化液", "brand": "普米克令舒(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈8-15元/支", "price_gen": "≈2-5元/支", "margin": "仿制毛利中等", "moa": "局部吸入糖皮质激素,抗炎", "indication": "儿童哮喘/毛细支气管炎/喉炎", "patient": "儿童为主(雾化治疗)", "combo": "SABA雾化液", "bundle": "雾化器/面罩", "season": "秋冬高峰", "region": "北方偏高", "note": "儿童雾化大品种,家庭雾化趋势"}, {"id": 49, "cat": "呼吸", "sub": "抗病毒", "name": "奥司他韦", "brand": "达菲/可威(Roche)", "mfr": "罗氏/东阳光", "generic_mfr": "东阳光药业", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈10-15元/粒(原研)", "price_gen": "≈5-8元/粒", "margin": "毛利较高", "moa": "神经氨酸酶抑制剂,阻止流感病毒释放", "indication": "甲型/乙型流感", "patient": "流感确诊/密接者,尤其儿童", "combo": "退热药/止咳药", "bundle": "维C/电解质水", "season": "冬春流感季", "region": "无明显差异", "note": "流感季爆款,东阳光国产品牌可威已成主流"}, {"id": 50, "cat": "呼吸", "sub": "头孢类抗生素", "name": "头孢克肟", "brand": "世福素(Astellas)", "mfr": "安斯泰来", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5-8元/片", "price_gen": "≈0.5-1元/片", "margin": "仿制毛利低", "moa": "三代头孢,抑制细菌细胞壁合成", "indication": "上/下呼吸道感染/尿路感染", "patient": "细菌性感染患者", "combo": "退烧药/止咳药", "bundle": "益生菌(防腹泻)", "season": "秋冬偏高", "region": "无明显差异", "note": "处方药,集采品种"}, {"id": 51, "cat": "呼吸", "sub": "大环内酯类", "name": "阿奇霉素", "brand": "希舒美(Pfizer)", "mfr": "辉瑞", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈8-12元/片", "price_gen": "≈0.5-1元/片", "margin": "仿制毛利低", "moa": "抑制细菌蛋白质合成,抗菌谱广", "indication": "呼吸道感染/支原体肺炎/衣原体感染", "patient": "社区获得性肺炎/儿童支原体感染", "combo": "退热药", "bundle": "益生菌", "season": "秋冬高峰", "region": "无明显差异", "note": "支原体肺炎时需求激增"}, {"id": 52, "cat": "呼吸", "sub": "喹诺酮类", "name": "左氧氟沙星", "brand": "可乐必妥(Daiichi Sankyo)", "mfr": "第一三共", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5-8元/片", "price_gen": "≈0.3-0.8元/片", "margin": "仿制毛利低", "moa": "抑制DNA旋转酶和拓扑异构酶IV", "indication": "呼吸道/泌尿道/皮肤软组织感染", "patient": "成人细菌感染(18岁以上)", "combo": "退热药", "bundle": "益生菌", "season": "全年", "region": "无明显差异", "note": "处方药,18岁以下禁用"}, {"id": 53, "cat": "呼吸", "sub": "咽喉用药", "name": "西瓜霜润喉片", "brand": "桂林三金", "mfr": "桂林三金", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈0.3-0.5元/片", "price_gen": "N/A", "margin": "毛利高", "moa": "清热解毒,消肿止痛", "indication": "咽喉肿痛/口腔溃疡", "patient": "全年龄咽喉不适者", "combo": "感冒药/抗生素", "bundle": "胖大海/金银花茶", "season": "秋冬+干燥季", "region": "北方偏高", "note": "OTC经典品牌,口碑好"}, {"id": 54, "cat": "呼吸", "sub": "减充血剂", "name": "伪麻黄碱(复方)", "brand": "新康泰克", "mfr": "中美史克(GSK)", "generic_mfr": "少数", "type": "原研品牌", "vbp": "未集采", "price_orig": "≈2-3元/粒", "price_gen": "N/A", "margin": "毛利较高", "moa": "α受体激动剂收缩鼻黏膜血管,减轻鼻塞", "indication": "感冒鼻塞/鼻窦炎", "patient": "鼻塞明显的感冒患者", "combo": "解热镇痛药", "bundle": "鼻喷剂", "season": "秋冬高峰", "region": "北方偏高", "note": "品牌认知度高,鼻塞症状定向推荐"}, {"id": 55, "cat": "呼吸", "sub": "中成药-咳嗽", "name": "急支糖浆", "brand": "太极牌", "mfr": "太极集团", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈10-20元/瓶", "price_gen": "N/A", "margin": "毛利高", "moa": "鱼腥草+金荞麦等清热化痰止咳", "indication": "急性支气管炎/感冒后咳嗽", "patient": "成人急性咳嗽", "combo": "退热药", "bundle": "润喉含片", "season": "秋冬高峰", "region": "无明显差异", "note": "太极大品种,OTC止咳经典"}, {"id": 56, "cat": "呼吸", "sub": "中成药-清肺", "name": "蓝芩口服液", "brand": "济川牌", "mfr": "济川药业", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈3-5元/支", "price_gen": "N/A", "margin": "毛利高", "moa": "板蓝根+黄芩+栀子等清热解毒利咽", "indication": "急性咽炎/咽喉肿痛", "patient": "咽喉肿痛人群", "combo": "退热药/抗生素", "bundle": "西瓜霜/咽喉含片", "season": "秋冬高峰", "region": "无明显差异", "note": "济川另一大品种,院内+零售双渠道"}, {"id": 57, "cat": "呼吸", "sub": "中成药-感冒", "name": "板蓝根颗粒", "brand": "白云山牌", "mfr": "白云山药业", "generic_mfr": "多家生产", "type": "多品牌", "vbp": "N/A", "price_orig": "≈1-2元/袋", "price_gen": "N/A", "margin": "毛利中等", "moa": "板蓝根清热解毒凉血", "indication": "感冒/咽喉肿痛(预防性使用)", "patient": "全年龄,家庭常备预防用", "combo": "感冒药", "bundle": "维C", "season": "秋冬+疫情期", "region": "无明显差异", "note": "OTC超级大品种,家庭常备属性强"}, {"id": 58, "cat": "代谢内分泌", "sub": "双胍类", "name": "二甲双胍", "brand": "格华止(Merck/BMS)", "mfr": "默克/百时美施贵宝", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈1-2元/片", "price_gen": "≈0.05-0.2元/片", "margin": "仿制毛利极低", "moa": "激活AMPK,抑制肝糖输出,增加外周组织葡萄糖利用", "indication": "2型糖尿病一线用药/PCOS", "patient": "T2DM患者(超重肥胖尤佳)", "combo": "磺脲类/DPP-4i/SGLT-2i/GLP-1RA", "bundle": "血糖仪/试纸", "season": "全年", "region": "无明显差异", "note": "糖尿病基石药物,集采品种价格极低,走量巨大"}, {"id": 59, "cat": "代谢内分泌", "sub": "磺脲类", "name": "格列美脲", "brand": "亚莫利(Sanofi)", "mfr": "赛诺菲", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "促进胰岛β细胞分泌胰岛素", "indication": "T2DM(二甲双胍控制不佳时加用)", "patient": "T2DM中老年,需促泌剂者", "combo": "二甲双胍", "bundle": "血糖仪/试纸/低血糖急救糖", "season": "全年", "region": "无明显差异", "note": "注意低血糖风险教育"}, {"id": 60, "cat": "代谢内分泌", "sub": "格列奈类", "name": "瑞格列奈", "brand": "诺和龙(Novo Nordisk)", "mfr": "诺和诺德", "generic_mfr": "国产少数", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.3-0.8元/片", "margin": "仿制毛利中等", "moa": "短效促胰岛素分泌,餐前即刻服用", "indication": "T2DM(餐后血糖控制)", "patient": "饮食不规律的T2DM患者", "combo": "二甲双胍", "bundle": "血糖仪/试纸", "season": "全年", "region": "无明显差异", "note": "餐时用药特点需重点教育"}, {"id": 61, "cat": "代谢内分泌", "sub": "α-糖苷酶抑制剂", "name": "阿卡波糖", "brand": "拜唐苹(Bayer)", "mfr": "拜耳", "generic_mfr": "华东医药/绿叶", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利中等", "moa": "抑制小肠α-糖苷酶,延缓碳水化合物吸收", "indication": "T2DM(餐后高血糖)/IGT", "patient": "以碳水化合物为主食的中国T2DM患者", "combo": "二甲双胍/磺脲类", "bundle": "血糖仪/试纸", "season": "全年", "region": "中国患者尤其适合(高碳水饮食)", "note": "中国特色大品种,碳水饮食结构下需求高"}, {"id": 62, "cat": "代谢内分泌", "sub": "DPP-4抑制剂", "name": "西格列汀", "brand": "捷诺维(MSD)", "mfr": "默沙东", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "已进医保", "price_orig": "≈5-8元/片", "price_gen": "≈2-4元/片", "margin": "毛利中等", "moa": "抑制DPP-4酶,延长内源性GLP-1作用时间", "indication": "T2DM", "patient": "T2DM需要加药控糖者", "combo": "二甲双胍/SGLT-2i", "bundle": "血糖仪", "season": "全年", "region": "无明显差异", "note": "不增加体重,低血糖风险低是卖点"}, {"id": 63, "cat": "代谢内分泌", "sub": "SGLT-2抑制剂", "name": "达格列净", "brand": "安达唐(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "国产仿制获批中", "type": "原研为主", "vbp": "已进医保", "price_orig": "≈4-6元/片", "price_gen": "≈2-3元/片(仿制陆续上市)", "margin": "毛利中高", "moa": "抑制肾脏SGLT-2,促进尿糖排泄", "indication": "T2DM/心衰/慢性肾病", "patient": "T2DM合并心血管/肾病者", "combo": "二甲双胍/胰岛素", "bundle": "血糖仪/尿酮试纸", "season": "全年", "region": "无明显差异", "note": "心肾获益拓宽适应症,新增长点"}, {"id": 64, "cat": "代谢内分泌", "sub": "SGLT-2抑制剂", "name": "恩格列净", "brand": "欧唐静(Boehringer/Lilly)", "mfr": "勃林格/礼来", "generic_mfr": "国产仿制获批中", "type": "原研为主", "vbp": "已进医保", "price_orig": "≈5-7元/片", "price_gen": "≈2-3元/片", "margin": "毛利中高", "moa": "同达格列净机制", "indication": "T2DM/心衰", "patient": "同达格列净", "combo": "二甲双胍", "bundle": "血糖仪", "season": "全年", "region": "无明显差异", "note": "与达格列净形成类内竞争"}, {"id": 65, "cat": "代谢内分泌", "sub": "GLP-1RA", "name": "司美格鲁肽", "brand": "诺和泰(Novo Nordisk)", "mfr": "诺和诺德", "generic_mfr": "暂无国产仿制", "type": "原研独占", "vbp": "已进医保(糖尿病适应症)", "price_orig": "≈20-30元/天(注射)", "price_gen": "N/A", "margin": "毛利中等(医保谈判价)", "moa": "GLP-1受体激动剂,促进胰岛素分泌,抑制食欲", "indication": "T2DM/肥胖症(减重适应症)", "patient": "T2DM减重需求者/肥胖症", "combo": "二甲双胍/SGLT-2i", "bundle": "血糖仪/注射针头", "season": "全年", "region": "无明显差异", "note": "全球现象级品种,减重概念带动需求爆发"}, {"id": 66, "cat": "代谢内分泌", "sub": "胰岛素", "name": "甘精胰岛素", "brand": "来得时(Sanofi)", "mfr": "赛诺菲", "generic_mfr": "甘李药业/联邦制药", "type": "原研+仿制", "vbp": "已集采(胰岛素专项)", "price_orig": "≈40-50元/支", "price_gen": "≈20-30元/支", "margin": "毛利中等", "moa": "长效基础胰岛素类似物,平稳控制基础血糖", "indication": "T1DM/T2DM口服药控制不佳", "patient": "需注射胰岛素的糖尿病患者", "combo": "口服降糖药", "bundle": "注射笔/针头/血糖仪/试纸", "season": "全年", "region": "无明显差异", "note": "胰岛素专项集采品种,甘李国产崛起"}, {"id": 67, "cat": "代谢内分泌", "sub": "胰岛素", "name": "门冬胰岛素", "brand": "诺和锐(Novo Nordisk)", "mfr": "诺和诺德", "generic_mfr": "甘李药业/海正", "type": "原研+仿制", "vbp": "已集采(胰岛素专项)", "price_orig": "≈40-50元/支", "price_gen": "≈25-35元/支", "margin": "毛利中等", "moa": "速效胰岛素类似物,控制餐后血糖", "indication": "T1DM/T2DM餐后控糖", "patient": "需餐时胰岛素者", "combo": "基础胰岛素", "bundle": "注射笔/针头/血糖仪", "season": "全年", "region": "无明显差异", "note": "速效胰岛素代表"}, {"id": 68, "cat": "代谢内分泌", "sub": "甲状腺激素", "name": "左甲状腺素钠", "brand": "优甲乐(Merck)", "mfr": "默克", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "未集采", "price_orig": "≈0.5-1元/片", "price_gen": "≈0.2-0.5元/片", "margin": "原研毛利中等", "moa": "补充外源性T4,维持正常甲状腺功能", "indication": "甲状腺功能减退/甲状腺术后/TSH抑制", "patient": "甲减患者(女性居多)", "combo": "单独使用为主", "bundle": "钙片(间隔4h)/硒酵母", "season": "全年", "region": "无明显差异", "note": "优甲乐品牌垄断性强,患者依从性高,复购稳定"}, {"id": 69, "cat": "代谢内分泌", "sub": "抗甲状腺药", "name": "甲巯咪唑", "brand": "赛治(Merck)", "mfr": "默克", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈0.5-1元/片", "price_gen": "≈0.1-0.3元/片", "margin": "毛利低", "moa": "抑制甲状腺过氧化物酶,减少甲状腺激素合成", "indication": "甲亢/Graves病", "patient": "甲亢患者(青中年女性偏多)", "combo": "β受体阻滞剂(心率快时)", "bundle": "护肝药(监测肝功能)", "season": "全年", "region": "无明显差异", "note": "需定期监测血常规和肝功能"}, {"id": 70, "cat": "代谢内分泌", "sub": "黄嘌呤氧化酶抑制剂", "name": "非布司他", "brand": "菲布力(Teijin/Menarini)", "mfr": "帝人/美纳里尼", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈5-8元/片", "price_gen": "≈0.5-1元/片", "margin": "仿制毛利中等", "moa": "选择性抑制黄嘌呤氧化酶,减少尿酸生成", "indication": "高尿酸血症/痛风", "patient": "高尿酸/痛风男性(30-60岁)", "combo": "秋水仙碱(急性期)/碳酸氢钠", "bundle": "碱性水/尿酸试纸", "season": "全年(火锅季冬季偏高)", "region": "沿海/高嘌呤饮食区", "note": "痛风患者增长快,男性为主"}, {"id": 71, "cat": "代谢内分泌", "sub": "黄嘌呤氧化酶抑制剂", "name": "别嘌醇", "brand": "N/A", "mfr": "多家", "generic_mfr": "国产为主", "type": "仿制", "vbp": "已集采", "price_orig": "≈0.1-0.3元/片", "price_gen": "N/A", "margin": "毛利极低", "moa": "非选择性抑制黄嘌呤氧化酶", "indication": "高尿酸血症/痛风", "patient": "痛风患者(价格敏感型)", "combo": "秋水仙碱", "bundle": "碱性水", "season": "全年", "region": "同上", "note": "价格极低,但需监测过敏反应(HLA-B*5801)"}, {"id": 72, "cat": "代谢内分泌", "sub": "抗痛风", "name": "秋水仙碱", "brand": "N/A", "mfr": "多家", "generic_mfr": "国产为主", "type": "仿制", "vbp": "未集采", "price_orig": "≈0.5-1元/片", "price_gen": "N/A", "margin": "毛利低", "moa": "抑制白细胞趋化和吞噬,减轻炎症", "indication": "急性痛风发作/预防", "patient": "痛风急性期患者", "combo": "非布司他/别嘌醇", "bundle": "止痛药", "season": "全年", "region": "同上", "note": "小剂量方案(0.5mg bid),注意腹泻副作用教育"}, {"id": 73, "cat": "代谢内分泌", "sub": "钙补充剂", "name": "碳酸钙D3", "brand": "钙尔奇(Pfizer/Wyeth)", "mfr": "辉瑞(惠氏)", "generic_mfr": "朗迪/国产多家", "type": "原研+仿制", "vbp": "未集采", "price_orig": "≈0.5-1元/片", "price_gen": "≈0.3-0.5元/片", "margin": "毛利较高", "moa": "补充钙和维生素D3,促进钙吸收", "indication": "骨质疏松预防/钙缺乏", "patient": "中老年女性/孕妇/绝经后女性", "combo": "阿仑膦酸钠(骨松治疗)", "bundle": "维生素D/关节营养品", "season": "全年", "region": "无明显差异", "note": "OTC大品种,钙尔奇品牌力强,年销20亿+"}, {"id": 74, "cat": "代谢内分泌", "sub": "维生素D", "name": "维生素D滴剂", "brand": "悦而(青岛双鲸)", "mfr": "青岛双鲸药业", "generic_mfr": "独家", "type": "国产原创", "vbp": "未集采", "price_orig": "≈0.5-0.8元/粒", "price_gen": "N/A", "margin": "毛利高", "moa": "补充维生素D,促进钙磷代谢", "indication": "VD缺乏/佝偻病预防/骨质疏松辅助", "patient": "婴幼儿/老年人/日照不足者", "combo": "钙剂", "bundle": "鱼肝油", "season": "全年", "region": "北方/日照少地区偏高", "note": "OTC大品种,婴幼儿刚需,年销20亿+"}, {"id": 75, "cat": "心血管", "sub": "CCB(钙通道阻滞剂)", "name": "苯磺酸氨氯地平", "brand": "络活喜(Pfizer)", "mfr": "辉瑞", "generic_mfr": "华润赛科/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.05-0.2元/片", "margin": "仿制毛利极低", "moa": "阻断L型钙通道,舒张血管平滑肌", "indication": "高血压/冠心病心绞痛", "patient": "中老年高血压(尤其老年单纯收缩期)", "combo": "ARB/ACEI/利尿剂/β受体阻滞剂", "bundle": "血压计/限盐勺", "season": "秋冬偏高(冷刺激升压)", "region": "北方偏高(高血压患病率高)", "note": "集采后价格极低,但量极大;络活喜仍有品牌市场"}, {"id": 76, "cat": "心血管", "sub": "CCB", "name": "苯磺酸左氨氯地平", "brand": "施慧达(石药)", "mfr": "石药集团", "generic_mfr": "国产创新药", "type": "国产原创(1类)", "vbp": "已集采", "price_orig": "≈1-2元/片", "price_gen": "N/A", "margin": "毛利中等", "moa": "氨氯地平S-构型,降低剂量和副作用", "indication": "高血压/心绞痛", "patient": "高血压患者(尤其CCB副作用敏感者)", "combo": "同氨氯地平", "bundle": "血压计", "season": "秋冬偏高", "region": "同上", "note": "石药原创1类新药,与氨氯地平形成竞争"}, {"id": 77, "cat": "心血管", "sub": "CCB", "name": "硝苯地平控释片", "brand": "拜新同(Bayer)", "mfr": "拜耳", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.1-0.5元/片", "margin": "仿制毛利低", "moa": "长效CCB,24h平稳降压", "indication": "高血压/心绞痛", "patient": "中老年高血压,需24h控压者", "combo": "ARB/ACEI", "bundle": "血压计", "season": "秋冬偏高", "region": "北方偏高", "note": "曾经的降压药王,集采后大幅缩水"}, {"id": 78, "cat": "心血管", "sub": "CCB", "name": "非洛地平缓释片", "brand": "波依定(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "二氢吡啶类CCB,选择性扩张外周血管", "indication": "高血压/心绞痛", "patient": "高血压患者", "combo": "ARB/β受体阻滞剂", "bundle": "血压计", "season": "秋冬偏高", "region": "北方偏高", "note": "阿斯利康品种,集采后份额下降"}, {"id": 79, "cat": "心血管", "sub": "ARB(血管紧张素受体拮抗剂)", "name": "缬沙坦", "brand": "代文(Novartis)", "mfr": "诺华", "generic_mfr": "华海药业/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "阻断AT1受体,扩张血管,降低血压", "indication": "高血压/心衰", "patient": "高血压患者(ACEI干咳者替代)", "combo": "CCB/利尿剂", "bundle": "血压计", "season": "秋冬偏高", "region": "北方偏高", "note": "集采品种,华海药业ARB龙头"}, {"id": 80, "cat": "心血管", "sub": "ARB", "name": "厄贝沙坦", "brand": "安博维(Sanofi)", "mfr": "赛诺菲", "generic_mfr": "华海药业/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.1-0.2元/片", "margin": "仿制毛利极低", "moa": "同ARB机制,肾脏保护作用突出", "indication": "高血压/糖尿病肾病", "patient": "高血压合并糖尿病患者", "combo": "CCB/二甲双胍", "bundle": "血压计/血糖仪", "season": "秋冬偏高", "region": "无明显差异", "note": "肾保护优势,合并糖尿病时首选之一"}, {"id": 81, "cat": "心血管", "sub": "ARB", "name": "氯沙坦钾", "brand": "科素亚(MSD)", "mfr": "默沙东", "generic_mfr": "华海药业/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "ARB+轻度促尿酸排泄", "indication": "高血压/高血压伴高尿酸", "patient": "高血压合并高尿酸血症者", "combo": "CCB/利尿剂/非布司他", "bundle": "血压计/尿酸仪", "season": "秋冬偏高", "region": "沿海地区(高尿酸高发)", "note": "独特优势:降尿酸,合并痛风/高尿酸首选"}, {"id": 82, "cat": "心血管", "sub": "ARNI", "name": "沙库巴曲缬沙坦", "brand": "诺欣妥(Novartis)", "mfr": "诺华", "generic_mfr": "国产仿制陆续获批", "type": "原研为主", "vbp": "已进医保", "price_orig": "≈8-12元/片", "price_gen": "≈3-5元/片(仿制)", "margin": "毛利中等", "moa": "ARB+脑啡肽酶抑制剂,降压+心衰双重获益", "indication": "高血压/心衰(射血分数降低型)", "patient": "高血压/心衰患者", "combo": "β受体阻滞剂/利尿剂", "bundle": "血压计", "season": "全年", "region": "无明显差异", "note": "新一代降压药王(2024年院内销售42亿),高增长品种"}, {"id": 83, "cat": "心血管", "sub": "ACEI", "name": "培哚普利", "brand": "雅施达(Servier)", "mfr": "施维雅", "generic_mfr": "国产少数", "type": "原研为主", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利低", "moa": "抑制ACE,减少AngII生成,扩张血管", "indication": "高血压/心衰/冠心病", "patient": "高血压+冠心病患者", "combo": "CCB/利尿剂", "bundle": "血压计", "season": "秋冬偏高", "region": "无明显差异", "note": "ACEI经典品种,心脏保护证据充分"}, {"id": 84, "cat": "心血管", "sub": "ACEI", "name": "贝那普利", "brand": "洛汀新(Novartis)", "mfr": "诺华", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "同ACEI机制", "indication": "高血压/心衰/肾病", "patient": "高血压合并肾病者", "combo": "CCB/利尿剂", "bundle": "血压计", "season": "秋冬偏高", "region": "无明显差异", "note": "肾保护作用,合并CKD时首选之一"}, {"id": 85, "cat": "心血管", "sub": "β受体阻滞剂", "name": "琥珀酸美托洛尔", "brand": "倍他乐克(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利低", "moa": "选择性β1受体阻滞,减慢心率,降低心输出量", "indication": "高血压/心绞痛/心衰/心律失常", "patient": "高血压合并心率快/心衰/心梗后", "combo": "ACEI/ARB/CCB", "bundle": "血压计/心率监测", "season": "全年", "region": "无明显差异", "note": "倍他乐克缓释品牌力极强,心血管全能选手"}, {"id": 86, "cat": "心血管", "sub": "β受体阻滞剂", "name": "比索洛尔", "brand": "康忻(Merck)", "mfr": "默克", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "高选择性β1阻滞剂", "indication": "高血压/心衰/心律失常", "patient": "同美托洛尔", "combo": "同上", "bundle": "血压计", "season": "全年", "region": "无明显差异", "note": "与美托洛尔形成类内竞争,选择性更高"}, {"id": 87, "cat": "心血管", "sub": "利尿剂", "name": "氢氯噻嗪", "brand": "N/A", "mfr": "多家", "generic_mfr": "国产", "type": "仿制", "vbp": "已集采", "price_orig": "≈0.1元/片", "price_gen": "N/A", "margin": "毛利极低", "moa": "抑制远曲小管Na+重吸收,利尿降压", "indication": "高血压(联合用药)/水肿", "patient": "高血压联合用药(常与ARB/ACEI合用)", "combo": "ARB/ACEI", "bundle": "血压计/补钾食品", "season": "全年", "region": "无明显差异", "note": "经典基础药,多用于复方制剂"}, {"id": 88, "cat": "心血管", "sub": "利尿剂", "name": "螺内酯", "brand": "安体舒通", "mfr": "多家", "generic_mfr": "国产", "type": "仿制", "vbp": "未集采", "price_orig": "≈0.2-0.5元/片", "price_gen": "N/A", "margin": "毛利低", "moa": "醛固酮受体拮抗剂,保钾利尿", "indication": "心衰/肝硬化腹水/难治性高血压", "patient": "心衰/肝硬化患者", "combo": "ACEI/ARB/β受体阻滞剂", "bundle": "补钾(注意高钾)", "season": "全年", "region": "无明显差异", "note": "心衰三联之一(ACEI+β-blocker+MRA)"}, {"id": 89, "cat": "心血管", "sub": "他汀类", "name": "阿托伐他汀", "brand": "立普妥(Pfizer)", "mfr": "辉瑞", "generic_mfr": "齐鲁/嘉林/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利极低", "moa": "抑制HMG-CoA还原酶,降低LDL-C", "indication": "高胆固醇血症/动脉粥样硬化/冠心病二级预防", "patient": "血脂异常患者(中老年为主)", "combo": "依折麦布/阿司匹林", "bundle": "血脂检测/鱼油", "season": "全年", "region": "无明显差异", "note": "曾经的全球药王,集采后价格极低但量巨大"}, {"id": 90, "cat": "心血管", "sub": "他汀类", "name": "瑞舒伐他汀", "brand": "可定(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "正大天晴/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利极低", "moa": "同他汀机制,降LDL-C强度最高之一", "indication": "高胆固醇血症/冠心病预防", "patient": "需强化降脂者", "combo": "依折麦布/PCSK9i", "bundle": "同上", "season": "全年", "region": "无明显差异", "note": "降脂幅度大是卖点"}, {"id": 91, "cat": "心血管", "sub": "他汀类", "name": "匹伐他汀", "brand": "力清之(Kowa)", "mfr": "兴和", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈2-3元/片", "price_gen": "≈0.3-0.8元/片", "margin": "仿制毛利中等", "moa": "他汀类,对血糖影响小", "indication": "高胆固醇血症", "patient": "合并糖尿病的血脂异常患者", "combo": "二甲双胍/依折麦布", "bundle": "血脂检测", "season": "全年", "region": "无明显差异", "note": "对血糖影响最小的他汀,糖尿病患者优选"}, {"id": 92, "cat": "心血管", "sub": "胆固醇吸收抑制剂", "name": "依折麦布", "brand": "益适纯(MSD)", "mfr": "默沙东", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈3-5元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利中等", "moa": "抑制小肠NPC1L1蛋白,减少胆固醇吸收", "indication": "他汀不耐受/他汀联合用药", "patient": "他汀效果不达标者", "combo": "他汀类", "bundle": "血脂检测", "season": "全年", "region": "无明显差异", "note": "他汀联合首选,集采品种"}, {"id": 93, "cat": "心血管", "sub": "抗血小板", "name": "阿司匹林(肠溶)", "brand": "拜阿司匹灵(Bayer)", "mfr": "拜耳", "generic_mfr": "国产众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈0.5-1元/片(100mg)", "price_gen": "≈0.05-0.1元/片", "margin": "仿制毛利极低", "moa": "不可逆抑制COX-1,抑制血小板TXA2合成", "indication": "心脑血管病二级预防/PCI术后", "patient": "冠心病/脑梗/PCI术后患者", "combo": "他汀/氯吡格雷(双抗)", "bundle": "PPI(护胃)", "season": "全年", "region": "无明显差异", "note": "心血管基石药,拜阿司匹灵品牌溢价明显"}, {"id": 94, "cat": "心血管", "sub": "抗血小板", "name": "氯吡格雷", "brand": "波立维(Sanofi)", "mfr": "赛诺菲", "generic_mfr": "信立泰/乐普/众多", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈10-15元/片", "price_gen": "≈0.2-0.5元/片", "margin": "仿制毛利低", "moa": "ADP受体P2Y12拮抗剂,抑制血小板聚集", "indication": "ACS/PCI术后/脑梗二级预防", "patient": "支架术后/脑梗后(与阿司匹林双抗)", "combo": "阿司匹林/他汀", "bundle": "PPI(护胃)", "season": "全年", "region": "无明显差异", "note": "双抗方案核心,集采后仿制品为主"}, {"id": 95, "cat": "心血管", "sub": "抗血小板", "name": "替格瑞洛", "brand": "倍林达(AstraZeneca)", "mfr": "阿斯利康", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈8-12元/片", "price_gen": "≈1-3元/片", "margin": "仿制毛利中等", "moa": "可逆性P2Y12拮抗剂,起效更快", "indication": "ACS/PCI术后", "patient": "ACS急性期+PCI术后(替代氯吡格雷)", "combo": "阿司匹林/他汀", "bundle": "PPI", "season": "全年", "region": "无明显差异", "note": "相对氯吡格雷起效快,不受CYP2C19基因型影响"}, {"id": 96, "cat": "心血管", "sub": "口服抗凝药", "name": "利伐沙班", "brand": "拜瑞妥(Bayer)", "mfr": "拜耳", "generic_mfr": "国产仿制获批", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈10-20元/片", "price_gen": "≈2-5元/片", "margin": "仿制毛利中等", "moa": "直接Xa因子抑制剂", "indication": "房颤预防卒中/DVT/PE", "patient": "房颤患者/DVT术后", "combo": "β受体阻滞剂(房颤)", "bundle": "INR监测(华法林转换时)", "season": "全年", "region": "无明显差异", "note": "新型口服抗凝药代表,替代华法林趋势"}, {"id": 97, "cat": "心血管", "sub": "硝酸酯类", "name": "单硝酸异山梨酯", "brand": "欣康(鲁南贝特)/依姆多(AZ)", "mfr": "鲁南贝特/阿斯利康", "generic_mfr": "国产多家", "type": "原研+仿制", "vbp": "已集采", "price_orig": "≈1-2元/片", "price_gen": "≈0.1-0.3元/片", "margin": "仿制毛利低", "moa": "释放NO,扩张冠状动脉和外周血管", "indication": "冠心病心绞痛/心衰辅助", "patient": "冠心病心绞痛患者", "combo": "β受体阻滞剂/CCB/阿司匹林", "bundle": "血压计", "season": "秋冬偏高(心绞痛高发)", "region": "北方偏高", "note": "冠心病经典用药,长效剂型为主"}, {"id": 98, "cat": "心血管", "sub": "硝酸酯类", "name": "硝酸甘油", "brand": "N/A", "mfr": "多家", "generic_mfr": "国产为主", "type": "仿制", "vbp": "未集采", "price_orig": "≈0.5-1元/片(舌下)", "price_gen": "N/A", "margin": "毛利低", "moa": "同上,起效极快(舌下含服1-3min)", "indication": "急性心绞痛发作急救", "patient": "冠心病患者急救备药", "combo": "长效硝酸酯/β-blocker", "bundle": "速效救心丸(中成药)", "season": "秋冬偏高", "region": "北方偏高", "note": "急救药,家庭必备,注意保存条件(避光密封)"}, {"id": 99, "cat": "心血管", "sub": "中成药-心血管", "name": "速效救心丸", "brand": "天士力/多家", "mfr": "天士力等", "generic_mfr": "多家", "type": "国产", "vbp": "N/A", "price_orig": "≈0.3-0.5元/丸", "price_gen": "N/A", "margin": "毛利较高", "moa": "川芎+冰片,行气活血,祛瘀止痛", "indication": "冠心病心绞痛/胸闷", "patient": "中老年冠心病患者(家庭急救)", "combo": "硝酸甘油/阿司匹林", "bundle": "血压计", "season": "秋冬偏高", "region": "北方偏高", "note": "OTC经典急救品种,与硝酸甘油互补"}, {"id": 100, "cat": "心血管", "sub": "中成药-心血管", "name": "复方丹参滴丸", "brand": "天士力", "mfr": "天士力", "generic_mfr": "独家", "type": "独家品种", "vbp": "N/A", "price_orig": "≈0.3-0.5元/丸", "price_gen": "N/A", "margin": "毛利较高", "moa": "丹参+三七+冰片,活血化瘀,理气止痛", "indication": "冠心病心绞痛/胸闷心悸", "patient": "中老年冠心病/胸闷者", "combo": "阿司匹林/他汀", "bundle": "血压计/速效救心丸", "season": "秋冬偏高", "region": "北方偏高", "note": "天士力核心品种,FDA临床曾引关注"}];
+const PW=[{"s": "【消化系统】", "d": "胃酸过多/反酸", "f": "PPI(奥美拉唑/雷贝拉唑)", "sc": "H2RA(法莫替丁)", "o": "铝碳酸镁(达喜)", "b": "PPI+达喜+益生菌 三件套"}, {"s": "【消化系统】", "d": "HP感染", "f": "PPI+阿莫西林+克拉霉素+铋剂(四联)", "sc": "换用甲硝唑/左氧氟沙星", "o": "N/A(需处方)", "b": "四联方案药品组合包"}, {"s": "【消化系统】", "d": "功能性消化不良", "f": "促动力药(多潘立酮/莫沙必利)", "sc": "消化酶(达吉)", "o": "吗丁啉+健胃消食片", "b": "促动力+消化酶+益生菌"}, {"s": "【消化系统】", "d": "急性腹泻", "f": "蒙脱石散+口服补液盐", "sc": "益生菌(培菲康/亿活)", "o": "蒙脱石散+黄连素", "b": "止泻+补液+益生菌 三件套"}, {"s": "【消化系统】", "d": "便秘", "f": "乳果糖", "sc": "膳食纤维", "o": "乳果糖+益生菌", "b": "泻药+益生菌+膳食纤维"}, {"s": "【消化系统】", "d": "肝病/脂肪肝", "f": "熊去氧胆酸/水飞蓟宾", "sc": "多烯磷脂酰胆碱", "o": "水飞蓟宾(OTC)", "b": "保肝药+解酒护肝类"}, {"s": "【消化系统】", "d": "中暑/胃肠型感冒", "f": "藿香正气口服液", "sc": "十滴水", "o": "藿香正气", "b": "夏季套装:藿香正气+仁丹+电解质"}, {"s": "【呼吸系统】", "d": "普通感冒", "f": "对症:解热镇痛+抗组胺+减充血", "sc": "复方感冒药(泰诺/快克)", "o": "感冒灵/板蓝根+退烧药", "b": "感冒药+维C+纸巾/口罩 组合"}, {"s": "【呼吸系统】", "d": "流感", "f": "奥司他韦(48h内)", "sc": "对症处理", "o": "连花清瘟(OTC)", "b": "奥司他韦+退烧药+电解质+口罩"}, {"s": "【呼吸系统】", "d": "咳嗽(有痰)", "f": "祛痰(氨溴索/乙酰半胱氨酸)", "sc": "雾化治疗", "o": "沐舒坦+川贝枇杷膏", "b": "祛痰药+止咳中成药+润喉"}, {"s": "【呼吸系统】", "d": "咳嗽(干咳)", "f": "右美沙芬", "sc": "孟鲁司特(过敏性)", "o": "川贝枇杷膏", "b": "止咳药+润喉含片+蜂蜜"}, {"s": "【呼吸系统】", "d": "过敏性鼻炎", "f": "鼻用激素(内舒拿)+口服抗组胺", "sc": "加孟鲁司特", "o": "氯雷他定+生理盐水鼻喷", "b": "抗过敏药+鼻喷+洗鼻器 三件套"}, {"s": "【呼吸系统】", "d": "哮喘(长期控制)", "f": "ICS+LABA(信必可/舒利迭)", "sc": "加LAMA/孟鲁司特", "o": "N/A(需处方)", "b": "吸入剂+峰流速仪+储雾罐"}, {"s": "【呼吸系统】", "d": "哮喘(急性发作)", "f": "SABA(万托林)", "sc": "加口服激素", "o": "N/A(需处方)", "b": "SABA+急救指导卡"}, {"s": "【呼吸系统】", "d": "咽喉肿痛", "f": "蒲地蓝/蓝芩口服液", "sc": "抗生素(必要时)", "o": "西瓜霜+板蓝根", "b": "清热中成药+润喉含片+维C"}, {"s": "【代谢内分泌】", "d": "2型糖尿病(初治)", "f": "二甲双胍", "sc": "加磺脲/DPP-4i/SGLT-2i", "o": "N/A(需处方)", "b": "降糖药+血糖仪+试纸+控糖食品"}, {"s": "【代谢内分泌】", "d": "2型糖尿病(进阶)", "f": "二甲双胍+SGLT-2i/GLP-1RA", "sc": "三联或+胰岛素", "o": "N/A(需处方)", "b": "多药组合+注射耗材+监测"}, {"s": "【代谢内分泌】", "d": "甲减", "f": "左甲状腺素钠(优甲乐)", "sc": "调整剂量", "o": "N/A(需处方)", "b": "优甲乐+钙片(间隔4h)+硒"}, {"s": "【代谢内分泌】", "d": "甲亢", "f": "甲巯咪唑", "sc": "丙硫氧嘧啶(孕期)", "o": "N/A(需处方)", "b": "抗甲药+护肝药+β-blocker"}, {"s": "【代谢内分泌】", "d": "痛风(急性)", "f": "秋水仙碱/NSAIDs", "sc": "口服激素", "o": "布洛芬", "b": "止痛+降尿酸+碱性水"}, {"s": "【代谢内分泌】", "d": "痛风(间歇期降酸)", "f": "非布司他/别嘌醇", "sc": "苯溴马隆", "o": "N/A(需处方)", "b": "降酸药+碱性水+尿酸仪"}, {"s": "【代谢内分泌】", "d": "骨质疏松/缺钙", "f": "碳酸钙D3+VD", "sc": "阿仑膦酸钠", "o": "钙尔奇+VD滴剂", "b": "钙片+VD+关节营养品 中老年套装"}, {"s": "【心血管】", "d": "高血压(初始)", "f": "CCB(氨氯地平)/ARB(缬沙坦)", "sc": "联合CCB+ARB或+利尿剂", "o": "N/A(需处方)", "b": "降压药+血压计+限盐勺"}, {"s": "【心血管】", "d": "高血压(联合)", "f": "ARB+CCB/ARNI(诺欣妥)", "sc": "三联:ARB+CCB+利尿剂", "o": "N/A(需处方)", "b": "多药组合+血压计+随访卡"}, {"s": "【心血管】", "d": "高脂血症", "f": "他汀(阿托伐/瑞舒伐)", "sc": "加依折麦布/PCSK9i", "o": "N/A(需处方)", "b": "他汀+鱼油+血脂检测卡"}, {"s": "【心血管】", "d": "冠心病(稳定)", "f": "阿司匹林+他汀+β-blocker", "sc": "加ACEI/硝酸酯", "o": "速效救心丸", "b": "五联药+血压计+硝酸甘油急救"}, {"s": "【心血管】", "d": "冠心病(ACS后)", "f": "双抗(阿司匹林+氯吡格雷/替格瑞洛)+他汀", "sc": "+β-blocker+ACEI", "o": "N/A(需处方)", "b": "术后用药组合+PPI护胃"}, {"s": "【心血管】", "d": "心衰", "f": "ACEI/ARNI+β-blocker+螺内酯+SGLT-2i", "sc": "加利尿剂/地高辛", "o": "N/A(需处方)", "b": "四联方案+电子秤(体重监测)"}, {"s": "【心血管】", "d": "房颤(抗凝)", "f": "利伐沙班/华法林", "sc": "达比加群", "o": "N/A(需处方)", "b": "抗凝药+INR监测(华法林)"}];
+const CL=[{"m": "1-2月(冬季)", "c": "感冒药/退烧药/心血管药", "ds": "流感/感冒/心脑血管急性事件/高血压波动", "mk": "春节家庭药箱/心血管关爱季", "st": "流感药品(奥司他韦)/退烧药/硝酸甘油/速效救心丸 提前1月备货"}, {"m": "3-4月(春季)", "c": "抗过敏药/鼻炎用药/哮喘药", "ds": "花粉过敏性鼻炎/哮喘/春季流感尾声", "mk": "过敏季专题/鼻炎关爱", "st": "氯雷他定/内舒拿/孟鲁司特/信必可 3月初备货"}, {"m": "5-6月(初夏)", "c": "胃肠药/祛暑药/皮肤药", "ds": "胃肠炎/中暑/食物中毒", "mk": "肠胃保卫战/夏季防暑", "st": "藿香正气/蒙脱石散/补液盐/黄连素 4月底备货"}, {"m": "7-8月(盛夏)", "c": "止泻药/祛暑药/防晒", "ds": "急性腹泻/中暑/空调病", "mk": "夏日健康守护/空调感冒", "st": "藿香正气口服液(峰值)/蒙脱石散/益生菌 持续补货"}, {"m": "9-10月(秋季)", "c": "抗过敏药/润肺止咳/胃药", "ds": "秋季花粉过敏/干咳/胃病复发", "mk": "秋燥养生/胃病关爱", "st": "抗过敏药/川贝枇杷膏/PPI/三九胃泰 9月初备货"}, {"m": "11-12月(冬季)", "c": "感冒药/心血管药/降压药", "ds": "流感/心脑血管/高血压恶化", "mk": "冬季心血管关爱/流感防护", "st": "全线感冒药/降压药/硝酸甘油/速效救心丸 10月底备货"}];
+
+const CC={
+  "消化":{g:"linear-gradient(135deg,#F97316,#FB923C)",b:"#FFF7ED",t:"#9A3412",i:"🫁"},
+  "呼吸":{g:"linear-gradient(135deg,#3B82F6,#60A5FA)",b:"#EFF6FF",t:"#1E3A8A",i:"🌬️"},
+  "代谢内分泌":{g:"linear-gradient(135deg,#22C55E,#4ADE80)",b:"#F0FDF4",t:"#14532D",i:"⚗️"},
+  "心血管":{g:"linear-gradient(135deg,#EC4899,#F472B6)",b:"#FDF2F8",t:"#831843",i:"❤️"}
+};
+const CATS=["全部","消化","呼吸","代谢内分泌","心血管"];
+const CI=["","c0","c1","c2","c3"];
+
+// ==================== PROGRESS / LOCALSTORAGE ====================
+const LS_KEY="pharma_tool_progress_v2";
+function loadProgress(){
+  try{const d=localStorage.getItem(LS_KEY);if(d)return JSON.parse(d)}catch(e){}
+  return{mastered:{},quizHistory:[],studyDays:{},totalQuizzes:0,totalCorrect:0,totalAnswered:0,lastStudy:null};
+}
+function saveProgress(){try{localStorage.setItem(LS_KEY,JSON.stringify(progress))}catch(e){}}
+function recordStudyDay(){
+  const today=new Date().toISOString().slice(0,10);
+  if(!progress.studyDays[today])progress.studyDays[today]=0;
+  progress.studyDays[today]++;
+  progress.lastStudy=today;
+  saveProgress();
+}
+function getStreak(){
+  const days=Object.keys(progress.studyDays).sort().reverse();
+  if(!days.length)return 0;
+  let streak=0;
+  const d=new Date();d.setHours(0,0,0,0);
+  // check if studied today or yesterday to start streak
+  const today=d.toISOString().slice(0,10);
+  const yd=new Date(d);yd.setDate(yd.getDate()-1);
+  const yesterday=yd.toISOString().slice(0,10);
+  if(days[0]!==today&&days[0]!==yesterday)return 0;
+  const daySet=new Set(days);
+  let cur=new Date(days[0]);
+  while(daySet.has(cur.toISOString().slice(0,10))){
+    streak++;
+    cur.setDate(cur.getDate()-1);
+  }
+  return streak;
+}
+
+let progress=loadProgress();
+let state={tab:"browse",cat:"全部",q:"",flips:{},quiz:{mode:"setup",cat:"全部",type:"mixed",qs:[],ci:0,score:0,ans:[],cnt:10},pwf:"全部",masterFilter:"all"};
+
+function h(t,p,...c){const e=document.createElement(t);if(p)Object.entries(p).forEach(([k,v])=>{if(k==="style"&&typeof v==="object")Object.assign(e.style,v);else if(k.startsWith("on"))e.addEventListener(k.slice(2).toLowerCase(),v);else if(k==="className")e.className=v;else if(k==="innerHTML")e.innerHTML=v;else e.setAttribute(k,v)});c.flat(Infinity).filter(Boolean).forEach(x=>e.append(typeof x==="string"?document.createTextNode(x):x));return e}
+
+function renderTabs(){
+  const el=document.getElementById("tabs");
+  el.innerHTML="";
+  const mCnt=Object.keys(progress.mastered).length;
+  const streak=getStreak();
+  document.getElementById("hdr-sub").textContent="已掌握 "+mCnt+"/100 · 连续学习 "+streak+" 天 · "+["消化","呼吸","代谢内分泌","心血管"].map(c=>c+" "+D.filter(d=>d.cat===c&&progress.mastered[d.id]).length+"/"+D.filter(d=>d.cat===c).length).join(" · ");
+  [["browse","📋 浏览学习"],["flashcard","🃏 闪卡记忆"],["quiz","✍️ 知识测验"],["pathway","🗺️ 疾病路径"],["calendar","📅 季节日历"],["progress","📊 学习进度"]].forEach(([k,label])=>{
+    const t=h("div",{className:"tab"+(state.tab===k?" on":""),onClick:()=>{state.tab=k;render()}},label);
+    el.appendChild(t);
+  });
+}
+
+function filtered(){
+  return D.filter(d=>{
+    if(state.cat!=="全部"&&d.cat!==state.cat)return false;
+    if(state.q){const q=state.q.toLowerCase();return[d.name,d.brand,d.sub,d.moa,d.indication,d.note,d.combo,d.bundle].some(f=>f&&f.toLowerCase().includes(q))}
+    return true;
+  });
+}
+
+function renderBrowse(){
+  const app=document.getElementById("app");
+  app.innerHTML="";
+  // Stats
+  const sg=h("div",{className:"sg"});
+  const cats={};D.forEach(d=>{cats[d.cat]=(cats[d.cat]||0)+1});
+  [{v:D.length,l:"药品总数",c:"#3B82F6"},{v:cats["消化"]||0,l:"消化系统",c:"#F97316"},{v:cats["呼吸"]||0,l:"呼吸系统",c:"#3B82F6"},{v:cats["代谢内分泌"]||0,l:"代谢内分泌",c:"#22C55E"},{v:cats["心血管"]||0,l:"心血管",c:"#EC4899"}].forEach(s=>{
+    sg.appendChild(h("div",{className:"sx"},h("div",{className:"sv",style:{color:s.c}},String(s.v)),h("div",{className:"sl"},s.l)));
+  });
+  app.appendChild(sg);
+
+  // Filters
+  const bar=h("div",{className:"bar"});
+  const sb=h("input",{className:"sb",placeholder:"🔍 搜索药品名/商品名/适应症/分类...",value:state.q,onInput:e=>{state.q=e.target.value;render()}});
+  bar.appendChild(sb);
+  CATS.forEach((c,i)=>{
+    bar.appendChild(h("button",{className:"cb "+CI[i]+(state.cat===c?" on":""),onClick:()=>{state.cat=c;render()}},c));
+  });
+  app.appendChild(bar);
+
+  const ds=filtered();
+  if(!ds.length){app.appendChild(h("div",{className:"em"},h("div",{className:"ei"},"🔍"),h("div",{},"没有找到匹配的药品")));return}
+
+  const masteredCount=ds.filter(d=>progress.mastered[d.id]).length;
+  const infoRow=h("div",{style:{display:"flex",alignItems:"center",gap:"8px",marginBottom:"8px",flexWrap:"wrap"}});
+  infoRow.appendChild(h("span",{style:{fontSize:"12px",color:"#64748B"}},"共 "+ds.length+" 个药品 · 已掌握 "+masteredCount+" 个 · 点击卡片翻转"));
+  const fmWrap=h("div",{className:"filter-master"});
+  [["all","全部"],["unmastered","未掌握"],["mastered","已掌握"]].forEach(([k,l])=>{
+    fmWrap.appendChild(h("button",{className:"fm-btn"+(state.masterFilter===k?" on":""),onClick:()=>{state.masterFilter=k;render()}},l));
+  });
+  infoRow.appendChild(fmWrap);
+  app.appendChild(infoRow);
+
+  let displayDrugs=ds;
+  if(state.masterFilter==="mastered")displayDrugs=ds.filter(d=>progress.mastered[d.id]);
+  else if(state.masterFilter==="unmastered")displayDrugs=ds.filter(d=>!progress.mastered[d.id]);
+
+  if(!displayDrugs.length){app.appendChild(h("div",{className:"em"},h("div",{className:"ei"},state.masterFilter==="mastered"?"🎯":"📚"),h("div",{},state.masterFilter==="mastered"?"还没有标记为已掌握的药品":"所有药品都已掌握！太棒了！")));return}
+
+  const grid=h("div",{className:"grid"});
+  displayDrugs.forEach(d=>{
+    const c=CC[d.cat];
+    const flipped=state.flips[d.id];
+    const card=h("div",{className:"card",onClick:()=>{state.flips[d.id]=!state.flips[d.id];render()}});
+    const hdr=h("div",{className:"ch",style:{background:c.g}},
+      h("div",{className:"sn"},"#"+d.id+" · "+d.cat+" · "+d.sub),
+      h("div",{className:"nm"},d.name),
+      h("div",{className:"br"},d.brand)
+    );
+    const mBtn=h("button",{className:"master-btn"+(progress.mastered[d.id]?" on":""),onClick:e=>{
+      e.stopPropagation();
+      if(progress.mastered[d.id])delete progress.mastered[d.id];else{progress.mastered[d.id]=Date.now();recordStudyDay()}
+      saveProgress();render();
+    }},progress.mastered[d.id]?"✅ 已掌握":"☐ 标记掌握");
+    card.appendChild(mBtn);
+    card.appendChild(hdr);
+
+    const body=h("div",{className:"cb2"});
+    if(!flipped){
+      body.appendChild(h("div",{className:"fh"},"👆 点击翻转查看运营详情"));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"💡 作用机制: "),h("span",{},d.moa)));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"🎯 适应症: "),h("span",{},d.indication)));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"👤 患者画像: "),h("span",{},d.patient)));
+    }else{
+      const tags=h("div",{style:{marginBottom:"6px"}});
+      tags.appendChild(h("span",{className:"bg bg-s"},d.type));
+      const vbpCls=d.vbp.includes("已集采")?"bg bg-g":"bg bg-y";
+      tags.appendChild(h("span",{className:vbpCls},d.vbp));
+      if(d.margin)tags.appendChild(h("span",{className:"bg bg-b"},d.margin));
+      body.appendChild(tags);
+      body.appendChild(h("div",{className:"fl"},h("b",{},"💰 价格: "),h("span",{},"原研 "+d.price_orig+(d.price_gen&&d.price_gen!=="N/A"?" | 仿制 "+d.price_gen:""))));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"🏭 厂商: "),h("span",{},d.mfr+(d.generic_mfr&&d.generic_mfr!=="N/A"?" / "+d.generic_mfr:""))));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"💊 联合用药: "),h("span",{},d.combo)));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"🛒 连带品类: "),h("span",{},d.bundle)));
+      body.appendChild(h("div",{className:"fl"},h("b",{},"📅 季节: "),h("span",{},d.season+" | 🌍 "+d.region)));
+      if(d.note)body.appendChild(h("div",{className:"nb"},"📝 "+d.note));
+    }
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+  app.appendChild(grid);
+}
+
+function renderFlashcard(){
+  const app=document.getElementById("app");
+  app.innerHTML="";
+  const bar=h("div",{className:"bar"});
+  CATS.forEach((c,i)=>{
+    bar.appendChild(h("button",{className:"cb "+CI[i]+(state.cat===c?" on":""),onClick:()=>{state.cat=c;state.fcIdx=0;render()}},c));
+  });
+  app.appendChild(bar);
+
+  const ds=D.filter(d=>state.cat==="全部"||d.cat===state.cat);
+  if(!state.fcIdx)state.fcIdx=0;
+  if(state.fcIdx>=ds.length)state.fcIdx=0;
+  const d=ds[state.fcIdx];
+  if(!d)return;
+
+  const c=CC[d.cat];
+  const flipped=state.fcFlip;
+
+  app.appendChild(h("div",{style:{textAlign:"center",margin:"12px 0",fontSize:"13px",color:"#64748B"}},(state.fcIdx+1)+" / "+ds.length));
+
+  const wrap=h("div",{style:{maxWidth:"500px",margin:"0 auto"}});
+  const card=h("div",{className:"card",style:{minHeight:"320px"},onClick:()=>{state.fcFlip=!state.fcFlip;if(state.fcFlip)recordStudyDay();render()}});
+  card.appendChild(h("div",{className:"ch",style:{background:c.g,textAlign:"center",padding:"20px"}},
+    h("div",{className:"sn"},"#"+d.id+" · "+d.sub),
+    h("div",{className:"nm",style:{fontSize:"24px",marginTop:"8px"}},d.name),
+    h("div",{className:"br",style:{fontSize:"13px"}},d.brand)
+  ));
+
+  const body=h("div",{className:"cb2",style:{padding:"16px 20px"}});
+  if(!flipped){
+    body.appendChild(h("div",{style:{textAlign:"center",color:"#94A3B8",padding:"24px 0",fontSize:"14px"}},"🤔 你能回忆出这个药品的信息吗？\n\n点击卡片翻转查看答案"));
+  }else{
+    [["💡 作用机制",d.moa],["🎯 适应症",d.indication],["👤 患者画像",d.patient],["💊 联合用药",d.combo],["🛒 连带品类",d.bundle],["📅 季节性",d.season],["🏷️ 集采/毛利",d.vbp+" · "+d.margin]].forEach(([l,v])=>{
+      body.appendChild(h("div",{className:"fl"},h("b",{},l+": "),h("span",{},v)));
+    });
+    if(d.note)body.appendChild(h("div",{className:"nb"},"📝 "+d.note));
+  }
+  card.appendChild(body);
+  wrap.appendChild(card);
+
+  const btns=h("div",{style:{display:"flex",gap:"8px",justifyContent:"center",marginTop:"14px"}});
+  btns.appendChild(h("button",{className:"bs",onClick:e=>{e.stopPropagation();state.fcIdx=Math.max(0,state.fcIdx-1);state.fcFlip=false;render()}},"⬅️ 上一个"));
+  btns.appendChild(h("button",{className:"bs",onClick:e=>{e.stopPropagation();state.fcIdx=Math.floor(Math.random()*ds.length);state.fcFlip=false;render()}},"🎲 随机"));
+  btns.appendChild(h("button",{className:"bs",onClick:e=>{e.stopPropagation();state.fcIdx=Math.min(ds.length-1,state.fcIdx+1);state.fcFlip=false;render()}},"下一个 ➡️"));
+  wrap.appendChild(btns);
+
+  const fcm=h("div",{className:"fc-master"});
+  fcm.appendChild(h("button",{className:"master-btn"+(progress.mastered[d.id]?" on":""),style:{position:"static",fontSize:"12px",padding:"6px 14px"},onClick:e=>{
+    e.stopPropagation();
+    if(progress.mastered[d.id])delete progress.mastered[d.id];else{progress.mastered[d.id]=Date.now();recordStudyDay()}
+    saveProgress();render();
+  }},progress.mastered[d.id]?"✅ 已掌握":"☐ 标记掌握"));
+  const unmasteredCount=ds.filter(x=>!progress.mastered[x.id]).length;
+  fcm.appendChild(h("span",{style:{fontSize:"11px",color:"#64748B",lineHeight:"28px"}},"剩余 "+unmasteredCount+" 个未掌握"));
+  wrap.appendChild(fcm);
+  app.appendChild(wrap);
+}
+
+function genQuiz(){
+  const pool=state.quiz.cat==="全部"?D:D.filter(d=>d.cat===state.quiz.cat);
+  const shuffled=[...pool].sort(()=>Math.random()-.5).slice(0,Math.min(state.quiz.cnt,pool.length));
+  const types=["moa","indication","brand","combo","bundle","vbp","patient"];
+  const typeLabels={"moa":"作用机制","indication":"适应症","brand":"商品名","combo":"联合用药","bundle":"连带品类","vbp":"集采状态","patient":"患者画像"};
+
+  const qs=shuffled.map(d=>{
+    let tp;
+    if(state.quiz.type==="mixed")tp=types[Math.floor(Math.random()*types.length)];
+    else tp=state.quiz.type;
+
+    const correct=d[tp];
+    const others=pool.filter(x=>x.id!==d.id&&x[tp]&&x[tp]!==correct&&!x[tp].startsWith("同")).sort(()=>Math.random()-.5).slice(0,3);
+    if(others.length<3){
+      const filler=pool.filter(x=>x.id!==d.id).sort(()=>Math.random()-.5).slice(0,3-others.length);
+      others.push(...filler);
+    }
+    const opts=[correct,...others.map(x=>x[tp])].sort(()=>Math.random()-.5);
+    const ai=opts.indexOf(correct);
+
+    return{drug:d,field:tp,fieldLabel:typeLabels[tp]||tp,question:"【"+d.name+"("+d.brand+")】的"+typeLabels[tp]+"是？",options:opts,answer:ai,explain:"正确答案："+correct+"\n\n📝 运营备注："+d.note};
+  });
+
+  state.quiz.qs=qs;state.quiz.ci=0;state.quiz.score=0;state.quiz.ans=[];state.quiz.mode="play";state.quiz.saved=false;
+  render();
+}
+
+function renderQuiz(){
+  const app=document.getElementById("app");
+  app.innerHTML="";
+  const qw=h("div",{className:"qw"});
+
+  if(state.quiz.mode==="setup"){
+    const qc=h("div",{className:"qc"});
+    qc.appendChild(h("h2",{},"✍️ 知识测验设置"));
+
+    const g1=h("div",{className:"qog"});
+    g1.appendChild(h("label",{},"选择分类"));
+    const r1=h("div",{className:"qor"});
+    CATS.forEach(c=>{r1.appendChild(h("button",{className:"qo"+(state.quiz.cat===c?" on":""),onClick:()=>{state.quiz.cat=c;render()}},c))});
+    g1.appendChild(r1);qc.appendChild(g1);
+
+    const g2=h("div",{className:"qog"});
+    g2.appendChild(h("label",{},"题目类型"));
+    const r2=h("div",{className:"qor"});
+    [["mixed","综合随机"],["moa","作用机制"],["indication","适应症"],["brand","商品名"],["combo","联合用药"],["bundle","连带品类"]].forEach(([k,l])=>{
+      r2.appendChild(h("button",{className:"qo"+(state.quiz.type===k?" on":""),onClick:()=>{state.quiz.type=k;render()}},l));
+    });
+    g2.appendChild(r2);qc.appendChild(g2);
+
+    const g3=h("div",{className:"qog"});
+    g3.appendChild(h("label",{},"题目数量"));
+    const r3=h("div",{className:"qor"});
+    [10,20,30,50].forEach(n=>{
+      r3.appendChild(h("button",{className:"qo"+(state.quiz.cnt===n?" on":""),onClick:()=>{state.quiz.cnt=n;render()}},n+"题"));
+    });
+    g3.appendChild(r3);qc.appendChild(g3);
+
+    qc.appendChild(h("div",{style:{textAlign:"center",marginTop:"20px"}},h("button",{className:"bp",onClick:genQuiz},"🚀 开始测验")));
+    qw.appendChild(qc);
+  }else if(state.quiz.mode==="play"){
+    const q=state.quiz.qs[state.quiz.ci];
+    if(!q){state.quiz.mode="done";render();return}
+    const answered=state.quiz.ans[state.quiz.ci]!==undefined;
+
+    const qc=h("div",{className:"qc"});
+    const pb=h("div",{className:"pb"},h("div",{className:"pbf",style:{width:((state.quiz.ci+1)/state.quiz.qs.length*100)+"%"}}));
+    qc.appendChild(pb);
+    qc.appendChild(h("div",{style:{fontSize:"12px",color:"#64748B",marginBottom:"12px"}},"第 "+(state.quiz.ci+1)+" / "+state.quiz.qs.length+" 题 · "+q.drug.cat+" · 考查: "+q.fieldLabel));
+    qc.appendChild(h("div",{className:"qq"},q.question));
+
+    q.options.forEach((opt,i)=>{
+      let cls="qopt";
+      if(answered){
+        if(i===q.answer)cls+=" ok";
+        else if(i===state.quiz.ans[state.quiz.ci]&&i!==q.answer)cls+=" no";
+      }else if(i===state.quiz.sel)cls+=" sel";
+
+      qc.appendChild(h("div",{className:cls,onClick:()=>{
+        if(answered)return;
+        state.quiz.ans[state.quiz.ci]=i;
+        if(i===q.answer)state.quiz.score++;
+        render();
+      }},String.fromCharCode(65+i)+". "+opt));
+    });
+
+    if(answered){
+      qc.appendChild(h("div",{className:"qex",innerHTML:q.explain.replace(/\n/g,"<br>")}));
+      const btns=h("div",{style:{textAlign:"center",marginTop:"14px"}});
+      if(state.quiz.ci<state.quiz.qs.length-1){
+        btns.appendChild(h("button",{className:"bp",onClick:()=>{state.quiz.ci++;render()}},"下一题 →"));
+      }else{
+        btns.appendChild(h("button",{className:"bp",onClick:()=>{state.quiz.mode="done";render()}},"查看结果 🎉"));
+      }
+      qc.appendChild(btns);
+    }
+    qw.appendChild(qc);
+  }else if(state.quiz.mode==="done"){
+    // Save quiz history
+    if(!state.quiz.saved){
+      const rec={date:new Date().toISOString(),cat:state.quiz.cat,type:state.quiz.type,total:state.quiz.qs.length,correct:state.quiz.score};
+      progress.quizHistory.unshift(rec);
+      if(progress.quizHistory.length>50)progress.quizHistory=progress.quizHistory.slice(0,50);
+      progress.totalQuizzes++;
+      progress.totalCorrect+=state.quiz.score;
+      progress.totalAnswered+=state.quiz.qs.length;
+      recordStudyDay();
+      saveProgress();
+      state.quiz.saved=true;
+    }
+    const qc=h("div",{className:"qc",style:{textAlign:"center"}});
+    const pct=Math.round(state.quiz.score/state.quiz.qs.length*100);
+    let emoji="🎉",msg="太棒了！你已经掌握了大部分知识！";
+    if(pct<60){emoji="💪";msg="继续加油！建议多翻看闪卡复习"}
+    else if(pct<80){emoji="👏";msg="不错的成绩！再巩固一下薄弱环节"}
+    qc.appendChild(h("div",{style:{fontSize:"48px",marginBottom:"8px"}},emoji));
+    qc.appendChild(h("div",{className:"sn2"},state.quiz.score+" / "+state.quiz.qs.length));
+    qc.appendChild(h("div",{style:{fontSize:"16px",color:"#64748B",margin:"8px 0"}},msg+" · 正确率 "+pct+"%"));
+
+    // Wrong answers summary
+    const wrongs=state.quiz.qs.filter((q,i)=>state.quiz.ans[i]!==q.answer);
+    if(wrongs.length){
+      qc.appendChild(h("div",{style:{textAlign:"left",marginTop:"16px",padding:"12px",background:"#FEF2F2",borderRadius:"8px",fontSize:"12px",lineHeight:"1.7"}},
+        h("div",{style:{fontWeight:"700",marginBottom:"6px",color:"#991B1B"}},"❌ 答错的题目（建议复习）："),
+        ...wrongs.map(q=>h("div",{style:{color:"#7F1D1D"}},"• "+q.drug.name+"("+q.drug.brand+") - "+q.fieldLabel))
+      ));
+    }
+
+    const btns=h("div",{className:"abtn"});
+    btns.appendChild(h("button",{className:"bp",onClick:()=>{state.quiz.mode="setup";render()}},"🔄 再来一次"));
+    btns.appendChild(h("button",{className:"bs",onClick:()=>{state.tab="flashcard";render()}},"🃏 去闪卡复习"));
+    qc.appendChild(btns);
+    qw.appendChild(qc);
+  }
+  app.appendChild(qw);
+}
+
+function renderPathway(){
+  const app=document.getElementById("app");
+  app.innerHTML="";
+
+  const bar=h("div",{className:"bar"});
+  ["全部","【消化系统】","【呼吸系统】","【代谢内分泌】","【心血管】"].forEach(c=>{
+    bar.appendChild(h("button",{className:"cb"+(state.pwf===c?" on":""),onClick:()=>{state.pwf=c;render()}},c.replace(/[【】]/g,"")||"全部"));
+  });
+  app.appendChild(bar);
+
+  const sections={};
+  PW.forEach(p=>{if(!sections[p.s])sections[p.s]=[];sections[p.s].push(p)});
+
+  const secColors={"【消化系统】":"linear-gradient(135deg,#F97316,#FB923C)","【呼吸系统】":"linear-gradient(135deg,#3B82F6,#60A5FA)","【代谢内分泌】":"linear-gradient(135deg,#22C55E,#4ADE80)","【心血管】":"linear-gradient(135deg,#EC4899,#F472B6)"};
+
+  Object.entries(sections).forEach(([sec,items])=>{
+    if(state.pwf!=="全部"&&state.pwf!==sec)return;
+    const ps=h("div",{className:"ps"});
+    ps.appendChild(h("h3",{style:{background:secColors[sec]||"#64748B"}},sec));
+    const tw=h("div",{className:"tbl-wrap"});
+    const tbl=h("table",{className:"pt"});
+    tbl.appendChild(h("thead",{},h("tr",{},
+      h("th",{},"疾病/症状"),h("th",{},"一线用药"),h("th",{},"二线/联合"),h("th",{},"OTC推荐"),h("th",{},"运营连带建议")
+    )));
+    const tbody=h("tbody",{});
+    items.forEach(p=>{
+      tbody.appendChild(h("tr",{},
+        h("td",{style:{fontWeight:"600"}},p.d),h("td",{},p.f),h("td",{},p.sc),h("td",{},p.o),h("td",{style:{color:"#1D4ED8",fontWeight:"500"}},p.b)
+      ));
+    });
+    tbl.appendChild(tbody);tw.appendChild(tbl);ps.appendChild(tw);app.appendChild(ps);
+  });
+}
+
+function renderCalendar(){
+  const app=document.getElementById("app");
+  app.innerHTML="";
+  app.appendChild(h("div",{style:{fontSize:"14px",fontWeight:"700",margin:"16px 0 12px"}},"📅 全年药品运营日历"));
+
+  const seasonColors=["linear-gradient(135deg,#3B82F6,#60A5FA)","linear-gradient(135deg,#22C55E,#4ADE80)","linear-gradient(135deg,#F97316,#FB923C)","linear-gradient(135deg,#EF4444,#F87171)","linear-gradient(135deg,#A855F7,#C084FC)","linear-gradient(135deg,#3B82F6,#60A5FA)"];
+
+  const grid=h("div",{className:"cgrid"});
+  CL.forEach((c,i)=>{
+    const cc=h("div",{className:"cc"});
+    cc.appendChild(h("div",{className:"cch",style:{background:seasonColors[i]||seasonColors[0]}},c.m));
+    const body=h("div",{className:"ccb"});
+    [["📦 重点品类",c.c],["🤒 高发疾病",c.ds],["📣 营销主题",c.mk],["⚠️ 备货提醒",c.st]].forEach(([l,v])=>{
+      body.appendChild(h("div",{className:"cf"},h("span",{className:"cl"},l+"："),v));
+    });
+    cc.appendChild(body);grid.appendChild(cc);
+  });
+  app.appendChild(grid);
+
+  app.appendChild(h("div",{style:{padding:"14px 16px",background:"#fff",borderRadius:"12px",border:"2px solid #E2E8F0",fontSize:"12px",lineHeight:"1.7",marginBottom:"20px"}},
+    h("div",{style:{fontWeight:"700",marginBottom:"4px"}},"📌 全年稳定需求品类"),
+    h("div",{style:{color:"#475569"}},"糖尿病用药(二甲双胍/胰岛素/SGLT-2i) | 降脂药(他汀类) | 甲状腺药(优甲乐) | 钙+VD | 降压药基础量")
+  ));
+}
+
+function renderProgress(){
+  const app=document.getElementById("app");
+  app.innerHTML="";
+  const wrap=h("div",{className:"prog-wrap"});
+
+  // Overview stats
+  const masteredIds=Object.keys(progress.mastered);
+  const masteredPct=Math.round(masteredIds.length/D.length*100);
+  const streak=getStreak();
+  const avgScore=progress.totalAnswered?Math.round(progress.totalCorrect/progress.totalAnswered*100):0;
+
+  const sg=h("div",{className:"sg"});
+  [{v:masteredIds.length+"/100",l:"已掌握药品",c:"#22C55E"},{v:streak+"天",l:"连续学习天数",c:"#F97316"},{v:progress.totalQuizzes,l:"累计测验次数",c:"#3B82F6"},{v:avgScore+"%",l:"平均正确率",c:"#8B5CF6"},{v:Object.keys(progress.studyDays).length,l:"总学习天数",c:"#EC4899"}].forEach(s=>{
+    sg.appendChild(h("div",{className:"sx"},h("div",{className:"sv",style:{color:s.c}},String(s.v)),h("div",{className:"sl"},s.l)));
+  });
+  wrap.appendChild(sg);
+
+  // Overall mastery progress bar
+  const pc=h("div",{className:"prog-card"});
+  pc.appendChild(h("h3",{},"📚 整体掌握进度"));
+  const pbo=h("div",{className:"prog-bar-outer"});
+  pbo.appendChild(h("div",{className:"prog-bar-inner",style:{width:masteredPct+"%",background:"linear-gradient(90deg,#22C55E,#4ADE80)"}}));
+  pbo.appendChild(h("div",{className:"prog-bar-label"},masteredIds.length+" / "+D.length+" ("+masteredPct+"%)"));
+  pc.appendChild(pbo);
+
+  // Per-category breakdown
+  const catGrid=h("div",{className:"prog-cat-grid"});
+  const catColors={"消化":"#F97316","呼吸":"#3B82F6","代谢内分泌":"#22C55E","心血管":"#EC4899"};
+  ["消化","呼吸","代谢内分泌","心血管"].forEach(cat=>{
+    const total=D.filter(d=>d.cat===cat).length;
+    const done=D.filter(d=>d.cat===cat&&progress.mastered[d.id]).length;
+    const pct=Math.round(done/total*100);
+    const item=h("div",{className:"prog-cat-item"});
+    item.appendChild(h("div",{className:"pci-name"},CC[cat].i+" "+cat));
+    const bar=h("div",{className:"pci-bar"});
+    bar.appendChild(h("div",{className:"pci-fill",style:{width:pct+"%",background:catColors[cat]}}));
+    item.appendChild(bar);
+    item.appendChild(h("div",{className:"pci-text"},done+"/"+total+" ("+pct+"%)"));
+    catGrid.appendChild(item);
+  });
+  pc.appendChild(catGrid);
+  wrap.appendChild(pc);
+
+  // Study heatmap (last 30 days)
+  const hc=h("div",{className:"prog-card"});
+  hc.appendChild(h("h3",{},"📅 近30天学习热力图"));
+  const heatWrap=h("div",{style:{display:"flex",gap:"4px",flexWrap:"wrap",marginTop:"8px"}});
+  for(let i=29;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=d.toISOString().slice(0,10);
+    const count=progress.studyDays[key]||0;
+    let bg="#F1F5F9";
+    if(count>=10)bg="#166534";
+    else if(count>=5)bg="#22C55E";
+    else if(count>=2)bg="#86EFAC";
+    else if(count>=1)bg="#BBF7D0";
+    const dayEl=h("div",{style:{width:"28px",height:"28px",borderRadius:"4px",background:bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"9px",color:count?"#fff":"#94A3B8",fontWeight:"600",cursor:"default"},title:key+" : "+count+"次操作"},d.getDate()+"");
+    heatWrap.appendChild(dayEl);
+  }
+  hc.appendChild(heatWrap);
+  const legend=h("div",{style:{display:"flex",gap:"8px",alignItems:"center",marginTop:"8px",fontSize:"10px",color:"#64748B"}});
+  legend.appendChild(h("span",{},"少"));
+  ["#F1F5F9","#BBF7D0","#86EFAC","#22C55E","#166534"].forEach(c=>{
+    legend.appendChild(h("div",{style:{width:"12px",height:"12px",borderRadius:"2px",background:c}}));
+  });
+  legend.appendChild(h("span",{},"多"));
+  hc.appendChild(legend);
+  wrap.appendChild(hc);
+
+  // Quiz history
+  const qhc=h("div",{className:"prog-card"});
+  qhc.appendChild(h("h3",{},"📝 测验历史记录"));
+  if(!progress.quizHistory.length){
+    qhc.appendChild(h("div",{style:{fontSize:"13px",color:"#94A3B8",padding:"12px 0"}},"还没有测验记录，去做一次测验吧！"));
+  }else{
+    const list=h("div",{});
+    progress.quizHistory.slice(0,15).forEach(r=>{
+      const pct=Math.round(r.correct/r.total*100);
+      let color="#22C55E";if(pct<60)color="#EF4444";else if(pct<80)color="#F97316";
+      list.appendChild(h("div",{className:"hist-item"},
+        h("span",{},new Date(r.date).toLocaleDateString("zh-CN")+" "+new Date(r.date).toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"})),
+        h("span",{style:{color:"#64748B"}},r.cat+" · "+(r.type==="mixed"?"综合":r.type)),
+        h("span",{style:{fontWeight:"700",color}},r.correct+"/"+r.total+" ("+pct+"%)")
+      ));
+    });
+    qhc.appendChild(list);
+  }
+  wrap.appendChild(qhc);
+
+  // Unmastered drugs quick list
+  const ulc=h("div",{className:"prog-card"});
+  ulc.appendChild(h("h3",{},"🎯 待掌握药品清单"));
+  const unmastered=D.filter(d=>!progress.mastered[d.id]);
+  if(!unmastered.length){
+    ulc.appendChild(h("div",{style:{fontSize:"14px",textAlign:"center",padding:"16px",color:"#22C55E",fontWeight:"700"}},"🎉 恭喜！你已经掌握了全部100个药品！"));
+  }else{
+    ulc.appendChild(h("div",{style:{fontSize:"12px",color:"#64748B",marginBottom:"8px"}},"还有 "+unmastered.length+" 个药品待掌握"));
+    const ugrid=h("div",{style:{display:"flex",gap:"4px",flexWrap:"wrap"}});
+    unmastered.forEach(d=>{
+      const c=CC[d.cat];
+      ugrid.appendChild(h("span",{style:{display:"inline-block",padding:"3px 8px",borderRadius:"4px",fontSize:"11px",background:c.b,color:c.t,fontWeight:"500",cursor:"pointer"},onClick:()=>{state.tab="browse";state.q=d.name;state.masterFilter="all";render()}},d.name));
+    });
+    ulc.appendChild(ugrid);
+  }
+  wrap.appendChild(ulc);
+
+  // Reset button
+  const resetWrap=h("div",{style:{textAlign:"center",marginTop:"12px",paddingBottom:"24px"}});
+  resetWrap.appendChild(h("button",{className:"reset-btn",onClick:()=>{
+    if(confirm("确定要清除所有学习进度吗？此操作不可恢复！")){
+      progress={mastered:{},quizHistory:[],studyDays:{},totalQuizzes:0,totalCorrect:0,totalAnswered:0,lastStudy:null};
+      saveProgress();render();
+    }
+  }},"🗑️ 清除所有学习进度"));
+  wrap.appendChild(resetWrap);
+
+  app.appendChild(wrap);
+}
+
+function render(){
+  renderTabs();
+  if(state.tab==="browse")renderBrowse();
+  else if(state.tab==="flashcard")renderFlashcard();
+  else if(state.tab==="quiz")renderQuiz();
+  else if(state.tab==="pathway")renderPathway();
+  else if(state.tab==="calendar")renderCalendar();
+  else if(state.tab==="progress")renderProgress();
+}
+
+render();
+</script>
+</body>
+</html>
